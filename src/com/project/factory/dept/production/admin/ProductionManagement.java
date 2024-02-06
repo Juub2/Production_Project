@@ -43,12 +43,6 @@ public class ProductionManagement {
 			production.setStopRequested(true);
 			MainView.pause();
 		} else if (sel == 3) {
-			if(production.isStarted() == false) {
-				System.out.println("생산이 시작되지 않았습니다.");
-				MainView.pause();
-				return;
-			}
-			
 			for (TodayProduction today : TodayProductionData.todayProductionList) {
 				System.out.printf("%s : %d대\n", today.getModel(), today.getTodayProductNum());
 			}
@@ -62,7 +56,6 @@ public class ProductionManagement {
 		} else {
 			System.out.println("잘못된입력");
 			MainView.pause();
-		
 		}
 	}
 
@@ -86,22 +79,9 @@ public class ProductionManagement {
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
 		MainView.doubleLine();
-		MainView.singnleLine();
-		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
-		MainView.singnleLine();
-		System.out.printf("금일 총 생산량\t");
-		for(TodayProduction today : TodayProductionData.todayProductionList) {
-			System.out.printf("\t%3d대\t",  today.getTodayProductNum());
-		}
-		System.out.println();
-		System.out.printf("금일 불량품 수\t");
-		for(TodayProduction today : TodayProductionData.todayProductionList) {
-			System.out.printf("\t%3d대\t",  today.getTodayDefectiveNum());
-		}
-		System.out.println();
-		System.out.print("재고 현황\t");
+		System.out.println("재고 현황");
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
-			System.out.printf("\t%3d대\t", model.getModelInventory());
+			System.out.printf("%s : %d대 ", model.getModelName(), model.getModelInventory());
 		}
 		
 		for(TodayProduction today : TodayProductionData.todayProductionList) {
