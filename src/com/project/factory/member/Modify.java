@@ -61,7 +61,7 @@ public class Modify {
 				// 변경된 내용이 없는 경우
 				System.out.println("변경된 내용이 없습니다.");
 
-				Modify.checkContinue();
+				Modify.checkContinue();    
 
 			} else {
 				// 변경된 이름인 경우

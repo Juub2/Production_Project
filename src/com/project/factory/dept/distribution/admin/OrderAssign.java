@@ -235,15 +235,15 @@ public class OrderAssign {
 
 	private static void deleteInventory(String model) {
 		ModelInfoData.modelInfoLoad();
-		for(Order Order : OrderData.orderList) {
-		for (ModelInfo modell : ModelInfoData.modelInfoList) { 
+		for (Order Order : OrderData.orderList) {
+			for (ModelInfo modell : ModelInfoData.modelInfoList) {
 				if (Order.getModelId().equals(model) && modell.getModelName().equals(model)) {
 					modell.setModelInventory(modell.getModelInventory() - Order.getQuantity());
-				System.out.println(modell.getModelName() +", "+ modell.getModelInventory());
+					System.out.println(modell.getModelName() + ", " + modell.getModelInventory());
 				}
 			}
 		}
-			
+
 	}
 
 	private static void assignPrint(String model) {
