@@ -42,7 +42,7 @@ public class HRM {
 		System.out.println("2. 퇴사 관리");
 		System.out.println("3. 사원 조회");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 
 		System.out.print("번호 입력: ");
@@ -83,7 +83,7 @@ public class HRM {
 
 		System.out.println();
 		System.out.println("1. 사원번호 생성하기");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 
 		Scanner scan = new Scanner(System.in);

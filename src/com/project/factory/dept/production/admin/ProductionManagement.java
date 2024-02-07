@@ -86,9 +86,9 @@ public class ProductionManagement {
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
 		MainView.doubleLine();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.printf("금일 총 생산량\t");
 		for(TodayProduction today : TodayProductionData.todayProductionList) {
 			System.out.printf("\t%3d대\t",  today.getTodayProductNum());

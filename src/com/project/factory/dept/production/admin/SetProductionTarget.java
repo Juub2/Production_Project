@@ -32,14 +32,14 @@ public class SetProductionTarget {
 					ProductionTarget.TargetNum.put(selectedModel, target);
 					// 숫자가 아닌값 입력시 catch
 				} catch (Exception e) {
-					MainView.singnleLine();
+					MainView.singleLine();
 					System.out.println("숫자만 입력하세요");
 					System.out.println();
 					MainView.pause();
 				}
 
 			} else {
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println("입력하신 모델이 존재하지 않습니다.");
 				MainView.pause();
 			}

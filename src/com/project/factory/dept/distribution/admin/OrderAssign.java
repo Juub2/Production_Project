@@ -241,7 +241,7 @@ public class OrderAssign {
 //			String address = "";
 
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("배정된 주문서");
 			System.out.println();
@@ -317,7 +317,7 @@ public class OrderAssign {
 						orderView();
 					} else {
 						System.out.println();
-						MainView.singnleLine();
+						MainView.singleLine();
 						System.out.println();
 						System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 					}
@@ -469,7 +469,7 @@ public class OrderAssign {
 
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			checkContinue();

@@ -18,23 +18,23 @@ public class AgencyManagementView {
 		AgencyManagementView.agencyManagementListView();
 
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		System.out.println("1. 대리점 등록");
 		System.out.println("2. 대리점 삭제");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
 	public static void deleteAgencyMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println("\t\t\t\t대리점 삭제");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		System.out.println("삭제하실 대리점 이름을 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("대리점명: ");
 	}
 

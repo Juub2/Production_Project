@@ -44,7 +44,7 @@ public class CommuteSearch {
         System.out.println("3. 인사부");
         System.out.println("4. 경영부");
         System.out.println();
-        MainView.singnleLine();
+        MainView.singleLine();
         System.out.print("번호 입력: ");
 
         Scanner scan = new Scanner(System.in);
@@ -78,7 +78,7 @@ public class CommuteSearch {
                 // Do nothing or handle accordingly
             } else {
                 System.out.println();
-                MainView.singnleLine();
+                MainView.singleLine();
                 System.out.println();
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 MainView.checkContinue();

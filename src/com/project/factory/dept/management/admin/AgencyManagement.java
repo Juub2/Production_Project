@@ -61,9 +61,9 @@ public class AgencyManagement {
 
 		try {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println("\t\t\t\t대리점 등록");
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 
 			if (AgencyManagement.registerAgencyName()) {
@@ -251,9 +251,9 @@ public class AgencyManagement {
 
 	private static boolean registerAgencyArea() {
 		while (true) {
-			MainView.singnleLine();
+			MainView.singleLine();
 			AreaView.areaView();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.print("구역 번호: ");
 			AgencyManagement.areaNum = scan.nextLine();
 
@@ -448,7 +448,7 @@ public class AgencyManagement {
 				return false;
 			} else {
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
@@ -468,7 +468,7 @@ public class AgencyManagement {
 				return false;
 			} else {
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}

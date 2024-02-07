@@ -19,60 +19,60 @@ public class MyOrderView {
 		System.out.println("3. 주문서 취소");
 		System.out.println("4. 주문서 조회");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
 	public static void orderAddMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println("\t\t\t\t주문서 작성");
-		MainView.singnleLine();
+		MainView.singleLine();
 
 		MyOrderView.modelView();
 
 		System.out.println("주문하실 모델 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
 	public static void orderEditMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println("\t\t\t\t주문서 수정");
-		MainView.singnleLine();
+		MainView.singleLine();
 
 		MyOrderView.orderListView();
 
 		System.out.println();
 		System.out.println("수정하실 주문서 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 	
 	public static void orderDeleteMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println("\t\t\t\t주문서 삭제");
-		MainView.singnleLine();
+		MainView.singleLine();
 		
 		MyOrderView.orderListView();
 		
 		System.out.println();
 		System.out.println("삭제하실 주문서 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 	
 	public static void orderViewMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println("\t\t\t\t주문서 조회");
 		
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		MyOrderView.orderView();
-		MainView.singnleLine();
+		MainView.singleLine();
 	}
 
 	private static void modelView() {

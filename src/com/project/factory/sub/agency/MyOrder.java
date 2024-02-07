@@ -124,7 +124,7 @@ public class MyOrder {
 
 						System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
 						System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
-						MainView.singnleLine();
+						MainView.singleLine();
 
 						if (MyOrder.checkEditContinue()) {
 							System.out.println();
@@ -173,7 +173,7 @@ public class MyOrder {
 						System.out.println();
 						System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
 						System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
-						MainView.singnleLine();
+						MainView.singleLine();
 
 						if (MyOrder.checkDeleteContinue()) {
 							OrderData.orderList.remove(order);// 해당 order 삭제
@@ -326,7 +326,7 @@ public class MyOrder {
                 return false;
             } else {
                 System.out.println();
-                MainView.singnleLine();
+                MainView.singleLine();
                 System.out.println();
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
             }
@@ -347,7 +347,7 @@ public class MyOrder {
                 return false;
             } else {
                 System.out.println();
-                MainView.singnleLine();
+                MainView.singleLine();
                 System.out.println();
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
             }

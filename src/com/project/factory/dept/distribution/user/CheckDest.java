@@ -37,7 +37,7 @@ public class CheckDest {
 		printOrder();
 		
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		
 		insertListNum();

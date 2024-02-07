@@ -15,7 +15,7 @@ public class BoardView {
 
 		System.out.println();
 		System.out.println("확인하실 공지사항 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 

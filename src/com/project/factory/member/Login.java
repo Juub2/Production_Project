@@ -63,7 +63,7 @@ public class Login {
 			MainView.pause();
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			Login.checkContinue();

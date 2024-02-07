@@ -20,7 +20,7 @@ public class ModifyView {
 				break;
 			}
 		}
-		MainView.singnleLine();
+		MainView.singleLine();
 
 		System.out.println("수정하고 싶은 개인정보 번호를 선택해주세요.");
 		System.out.println();
@@ -29,7 +29,7 @@ public class ModifyView {
 		System.out.println("3. 주소");
 		System.out.println("4. 비밀번호");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 }
