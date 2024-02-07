@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import com.project.factory.Main;
@@ -18,6 +17,10 @@ public class SignUp {
 	private static final Object[] String = null;
 
 	public static void cheackid() {
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t회원가입");
+		MainView.doubleLine();
 		
 		try {
 			// 사원번호
@@ -45,6 +48,8 @@ public class SignUp {
 				System.out.println("\t\t\t\t회원가입");
 				MainView.singleLine();
 				System.out.println();
+				System.out.println("회원가입을 진행할 사원 번호를 입력해주세요.");
+				System.out.println();   
 				System.out.print("사원번호: ");
 				Scanner scan = new Scanner(System.in);
 				String loadId = scan.nextLine();
@@ -87,7 +92,7 @@ public class SignUp {
 					boolean pwLoop = true;
 					while(pwLoop) {
 						System.out.println("비밀번호를 설정해 주세요.");
-						System.out.println("(길이 : 10-16자, 영문자, 숫자만 가능)");
+						System.out.println("비밀번호는 10-16글자, 영문자&숫자만 입력 가능합니다.");
 						System.out.println();
 						MainView.singleLine();
 						System.out.println();

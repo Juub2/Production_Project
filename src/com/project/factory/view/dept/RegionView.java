@@ -5,7 +5,7 @@ import com.project.factory.view.MainView;
 public class RegionView {
 	
 	public static void RegionViewTitle() {
-		System.out.println();
+		
 		MainView.doubleLine();
 		System.out.println("      사원 배송 구역 관리");
 		MainView.doubleLine();

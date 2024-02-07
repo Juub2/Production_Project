@@ -1,11 +1,10 @@
 package com.project.factory.view.dept;
 
-import com.project.factory.Main;
-import com.project.factory.member.Identify;
+
 import com.project.factory.view.MainView;
 
 //TODO 근태 등록 뷰 클래스 추가
-public class commutePushView {
+public class CommutePushView {
 	
 	//TODO 근태 등록 뷰 메서드
 	public static void commutePushViewMain() {

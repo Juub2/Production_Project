@@ -26,7 +26,7 @@ public class Today {
 
 	}
 
-	// 차량 주문 현재일 부터 5일 후 배송(납기)
+	// 주문일로부터 5일 후 배송(납기)
 	public static String daysLater() {
 		Calendar daysLater = Calendar.getInstance();
 		daysLater.add(Calendar.DATE, 5);

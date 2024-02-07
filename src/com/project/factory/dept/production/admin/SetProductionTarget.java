@@ -22,7 +22,7 @@ public class SetProductionTarget {
 			System.out.println("종료를 원하시면  0을 입력하시오.");
 			System.out.print("모델입력: ");
 			String selectedModel = sc.next();
-			if(selectedModel.equals("0")) {
+			if (selectedModel.equals("0")) {
 				break;
 			}
 			if (ProductionTarget.TargetNum.containsKey(selectedModel)) {
@@ -41,13 +41,44 @@ public class SetProductionTarget {
 			} else {
 				MainView.singleLine();
 				System.out.println("입력하신 모델이 존재하지 않습니다.");
+				System.out.println();
+				MainView.doubleLine();
+				System.out.println("\t\t\t\t생산 목표량 입력 및 수정");
+				MainView.doubleLine();
+				System.out.println();
+				System.out.println("모델별 생산 목표량을 입렵해주세요.");
+				System.out.println();
+				ProductionView.viewModelInven();
+
+				System.out.println();
+				System.out.print("모델 입력: ");
+				String selectedModel1 = sc.nextLine();
+				if (ProductionTarget.TargetNum.containsKey(selectedModel1)) {
+					try {
+						System.out.println();
+						System.out.print(selectedModel1 + " : ");
+						target = sc.nextInt();
+						ProductionTarget.TargetNum.put(selectedModel1, target);
+						// 숫자가 아닌값 입력시 catch
+					} catch (Exception e) {
+						MainView.singnleLine();
+						System.out.println("숫자만 입력하세요");
+						System.out.println();
+						MainView.pause();
+					}
+
+				} else {
+					MainView.singnleLine();
+					System.out.println("입력하신 모델이 존재하지 않습니다.");
+				}
+
+				ProductionTarget.save_target();
+				System.out.println();
+				MainView.singnleLine();
+				ProductionView.viewModelInven();
 				MainView.pause();
 			}
+
 		}
-		MainView.pause();
-		ProductionTarget.save_target();
-		ProductionView.viewModelInven();
-
 	}
-
 }

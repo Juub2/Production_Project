@@ -3,9 +3,6 @@ package com.project.factory.dept.production.user;
 import java.util.Scanner;
 
 import com.project.factory.Main;
-import com.project.factory.member.Login;
-import com.project.factory.resource.inventory.ModelInfo;
-import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
@@ -30,7 +27,7 @@ public class CheckPiece {
 
 	}
 
-	private static void checkPiece() {
+	public static void checkPiece() {
 		ProductionView.checkPiece();
 
 	}

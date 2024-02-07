@@ -43,7 +43,8 @@ public class Modify {
 		String name = "";
 
 		Scanner scan = new Scanner(System.in);
-
+		
+		System.out.println();
 		System.out.print("이름: ");
 		name = scan.nextLine();
 
@@ -77,6 +78,7 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
 		System.out.print("전화번호: ");
 		phoneNum = scan.nextLine();
 
@@ -106,6 +108,7 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
 		System.out.print("주소: ");
 		address = scan.nextLine();
 
@@ -136,6 +139,7 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
 		System.out.print("비밀번호: ");
 		pw = scan.nextLine();
 

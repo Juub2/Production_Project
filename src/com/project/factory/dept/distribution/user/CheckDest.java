@@ -3,22 +3,27 @@ package com.project.factory.dept.distribution.user;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
+
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.CheckDestView;
 
 public class CheckDest {
 
-	public static int selectNum;
+	public static String selectNum;
+	
+
 
 	public static void checkDest() {
 		AssignData.load();
+	
+		CheckDestView.checkDestTitle();
 
 		boolean hasOrders = false;
 
 		for (Assign assignOrder : AssignData.assignList) {
-			if (assignOrder.getMemberId().equals(Identify.auth)) {
+			if (assignOrder.getUserId().equals(Identify.auth)) {
 				hasOrders = true;
 				break;
 			}
@@ -29,9 +34,23 @@ public class CheckDest {
 			System.out.println();
 			System.out.println("오늘 배정받은 배송지가 없습니다.");
 			System.out.println();
-			MainView.doubleLine();
+			MainView.singnleLine();
 			MainView.pause();
 			return;
+		}
+		
+		for (Assign assignOrder : AssignData.assignList) {
+			if(assignOrder.getUserId().equals(Identify.auth)) {
+				if(assignOrder.getState().equals("완료") ) {
+					
+					System.out.println();
+					System.out.println("배송을 모두 완료했습니다.");
+					System.out.println();
+					MainView.singnleLine();
+					MainView.pause();
+					return;
+				}
+			}
 		}
 
 		printOrder();
@@ -76,20 +95,20 @@ public class CheckDest {
 		boolean validInput = false;
 
 		while (!validInput) {
-			System.out.println("배송이 완료된 리스트 번호를 입력해주세요");
+			System.out.println("배송이 완료된 주문서 번호를 입력해주세요");
 			System.out.print("번호 입력: ");
 
 			Scanner scan = new Scanner(System.in);
 
 			try {
-				selectNum = scan.nextInt();
+				selectNum = scan.nextLine();
 
 				boolean found = false;
 
 				for (Assign assignOrder : AssignData.assignList) {
-					if (assignOrder.getNum() == selectNum && assignOrder.getMemberId().equals(Identify.auth)) {
+					if (assignOrder.getId().equals(selectNum) && assignOrder.getUserId().equals(Identify.auth)) {
 						System.out.println();
-						System.out.printf("%d번 배송 완료되었습니다.", assignOrder.getNum());
+						System.out.printf("%s번 주문서 배송 완료되었습니다.", assignOrder.getId());
 						System.out.println();
 						found = true;
 						validInput = true; 
@@ -115,9 +134,9 @@ public class CheckDest {
 		}
 	}
 
-	private static void deleteOrder(int selectNum) {
+	private static void deleteOrder(String selectNum) {
 		for (Assign assignOrder : AssignData.assignList) {
-			if (assignOrder.getNum() == selectNum) {
+			if (assignOrder.getId().equals(selectNum)) {
 				// 주문 번호와 일치하는 주문을 리스트에서 삭제
 				assignOrder.setState("완료");
 				// 파일에 변경된 주문 목록 저장
@@ -130,13 +149,13 @@ public class CheckDest {
 
 	private static void printOrder() {
 
-		MainView.doubleLine();
+		
 		System.out.println();
 
-		System.out.println("[번호]\t[구역]\t[대리점명]\t[모델명]\t[수량]\t[상태]");
+		System.out.println("[주문서 번호]\t[구역]\t\t[대리점명]\t[모델명]\t[수량]\t[상태]");
 		for (Assign assignOrder : AssignData.assignList) {
-			if (assignOrder.getMemberId().equals(Identify.auth)) {
-				System.out.printf("%d\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getNum(), assignOrder.getAssignRegion(),
+			if (assignOrder.getUserId().equals(Identify.auth)) {
+				System.out.printf("%s\t\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getId(), assignOrder.getArea(),
 						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
 			}
 

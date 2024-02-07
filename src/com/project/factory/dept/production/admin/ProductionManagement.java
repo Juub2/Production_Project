@@ -2,7 +2,6 @@ package com.project.factory.dept.production.admin;
 
 import java.util.Scanner;
 
-import com.project.factory.Today;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
@@ -60,7 +59,7 @@ public class ProductionManagement {
 
 			}
 		} else {
-			System.out.println("잘못된입력");
+			System.out.println("잘못된 입력입니다.");
 			MainView.pause();
 		
 		}

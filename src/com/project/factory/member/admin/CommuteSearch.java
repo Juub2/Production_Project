@@ -1,6 +1,7 @@
 package com.project.factory.member.admin;
 
 import java.util.Scanner;
+
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.member.Identify;
@@ -96,10 +97,20 @@ public class CommuteSearch {
             if (isMemberCommuteExists(date)) {
                 return 1;
             } else {
+            	System.out.println();
                 System.out.println("존재하지 않는 날짜입니다.");
+                if(MainView.checkContinueBoolean()) {
+                	commuteSearch();
+                	
+                }
+                return 0;
             }
         } else {
+        	System.out.println();
             System.out.println("잘못된 형식의 날짜입니다.");
+            if(MainView.checkContinueBoolean()) {
+            	commuteSearch();
+            }
         }
 
        

@@ -16,7 +16,7 @@ public class ModifyView {
 		for (Members member : Data.memberList) {
 			if (member.getId().equals(Identify.auth)) {
 			    System.out.printf("%-5s\t%-12S\t%-40S\t%-16S\r\n", "[이름]", "[전화번호]", "[주소]", "[비밀번호]");
-				System.out.printf("%-5S\t%-12S\t%-40S\t%-16S\n", member.getName(), member.getPhoneNum(), member.getAddress(), member.getPw());
+				System.out.printf("%-5s\t%-12s\t%-40s\t%-16s\n", member.getName(), member.getPhoneNum(), member.getAddress(), member.getPw());
 				break;
 			}
 		}

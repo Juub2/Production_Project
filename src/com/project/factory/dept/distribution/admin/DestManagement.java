@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.project.factory.Main;
 import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.DistributionData;
@@ -17,79 +18,67 @@ import com.project.factory.view.dept.RegionView;
 
 public class DestManagement {
 
-
 	public static String id;
 
 	public static void destManagement() {
-		
-		MainView.doubleLine();
-		System.out.println();
+		DistributionData.load();
+
 		RegionView.RegionViewTitle();
 		System.out.println();
 
 		// userRegion.txt에 있는 파일 출력
-		//readAndPrintUserRegionFile();
-		
-		DistributionData.load();
-		
+		// readAndPrintUserRegionFile();
+
 		System.out.println("[사원번호]\t[이름]\t[전화번호]\t[담당구역]");
-		
-        for (EmployeeInfo employeeInfo :DistributionData.distributionMembersList ) {
-            System.out.printf("%s\t\t%s\t%s\t%s%n", employeeInfo.getId(), employeeInfo.getName(),
-                    employeeInfo.getPhoneNum(), employeeInfo.getAssignedRegion());
-        }
-		
-		checkMemberId();
-		
-		if(checkMember()) {
-			area();
-		} else {
-			MainView.pause();
+
+		for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
+			System.out.printf("%s\t\t%s\t%s\t%s%n", employeeInfo.getId(), employeeInfo.getName(),
+					employeeInfo.getPhoneNum(), employeeInfo.getAssignedRegion());
 		}
-		
-		
-		
-		
 
+		if (checkMemberId()) {
+			if (checkMember()) {
+				area();
+			} else {
+				destManagement();
+			}
+		}
 	}
-	
 
-	private static void checkMemberId() {
+	private static boolean checkMemberId() {
 	    Scanner scan = new Scanner(System.in);
 
 	    System.out.println();
 	    System.out.print("담당 구역을 변경하실 사원의 사원번호를 입력하세요: ");
-	
-	    
+
 	    id = scan.nextLine();
-
-
+	
 	    for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
 	        if (employeeInfo.getId().equals(id)) {
-	        	System.out.println("[사원번호]\t[이름]\t[전화번호]\t[담당구역]");
+	            System.out.println("[사원번호]\t[이름]\t[전화번호]\t[담당구역]");
 	            System.out.printf("%s\t\t%s\t%s\t%s%n", employeeInfo.getId(), employeeInfo.getName(),
 	                    employeeInfo.getPhoneNum(), employeeInfo.getAssignedRegion());
-
-	            // 사원을 찾았으므로 루프를 빠져나감
-	            return;
-	        }
+	            
+	            return true; // 사원을 찾았으므로 true 반환
+	        } 
 	    }
-
-	    // 루프를 빠져나왔다면 해당 사원이 없음을 출력
+	    
+	    // 반복문이 끝난 후에 해당 코드가 실행되므로 사원을 찾지 못한 경우에만 실행됨
+	    System.out.println();
 	    System.out.println("해당 사원을 찾을 수 없습니다.");
-
-	    if (HRM.continueOperation()) {
-	        checkMemberId();
-	    } else {
-	        MainView.pause();
+	    if (MainView.checkContinueBoolean()) {
+	        // 재귀 호출이 아니라 반복문을 다시 실행하도록 수정
+	        return checkMemberId();
 	    }
+	    MainView.pause();
+	    return false; // 사원을 찾지 못했으므로 false 반환
 	}
+
 
 	private static boolean checkMember() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
 		System.out.println("해당 직원이 맞습니까?(Y/N)");
-		System.out.println();
 		System.out.print("입력: ");
 
 		String answer = scan.nextLine().toUpperCase();
@@ -99,15 +88,18 @@ public class DestManagement {
 			return true;
 
 		} else if (answer.equals("N")) {
-	
+
 			return false;
 		}
+		System.out.println();
 		System.out.println("잘못된 입력입니다.");
+		System.out.println();
 		return false;
 	}
 
-
+	
 	public static void area() {
+
 		MainView.singleLine();
 		System.out.println();
 		AreaView.areaView();
@@ -116,11 +108,28 @@ public class DestManagement {
 		
 		System.out.print("행정구역 번호: ");
 
-		Scanner scanner = new Scanner(System.in);
-		int selectedRegion = scanner.nextInt();
 
-		// 선택된 행정구역 번호에 따라 담당 구역 설정
-		switch (selectedRegion) {
+	    Scanner scanner = new Scanner(System.in);
+	    int selectedRegion;
+
+	    do {
+	        System.out.print("행정구역 번호: ");
+	        if (scanner.hasNextInt()) {
+	            selectedRegion = scanner.nextInt();
+	            if (selectedRegion >= 1 && selectedRegion <= 17) {
+	                break; // 올바른 범위 내의 값이 입력되었을 때 루프 종료
+	            } else {
+	                System.out.println("1부터 17까지의 번호를 입력하세요.");
+	            }
+	        } else {
+	        	System.out.println();
+	            System.out.println("잘못된 입력입니다. 숫자를 입력하세요.");
+	            System.out.println();
+	            scanner.next(); // 잘못된 입력을 처리하기 위해 다음 입력을 받음
+	        }
+	    } while (true);
+
+	    switch (selectedRegion) {
 		case 1:
 			updateAssignedRegion("서울특별시");
 			break;
@@ -177,55 +186,51 @@ public class DestManagement {
 		}
 	}
 
+
 	private static void updateAssignedRegion(String newRegion) {
-	    try (BufferedReader reader = new BufferedReader(new FileReader(Path.USERREGION));
-	         BufferedWriter writer = new BufferedWriter(new FileWriter(Path.USERREGIONTEMP))) {
-	        
-	        String line;
+		try (BufferedReader reader = new BufferedReader(new FileReader(Path.USERREGION));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(Path.USERREGIONTEMP))) {
 
-	        while ((line = reader.readLine()) != null) {
-	            String[] temp = line.split("■");
-	            String existingId = temp[0];
+			String line;
 
-	            if (existingId.equals(DestManagement.id)) {
-	                // 이전에 할당된 지역과 새로운 지역이 동일한 경우 변경하지 않음
-	                if (!temp[3].equals(newRegion)) {
-	                    // 선택된 행정구역으로 담당 구역 업데이트
-	                    temp[3] = newRegion;
-	                    System.out.println("담당 구역이 성공적으로 변경되었습니다.");
-	                } else {
-	                    System.out.println("이미 해당 구역으로 할당되어 있습니다.");
-	                }
-	            }
+			while ((line = reader.readLine()) != null) {
+				String[] temp = line.split("■");
+				String existingId = temp[0];
 
-	            // 변경된 라인을 새로운 파일에 쓰기
-	            writer.write(String.join("■", temp) + "\n");
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+				if (existingId.equals(DestManagement.id)) {
+					// 이전에 할당된 지역과 새로운 지역이 동일한 경우 변경하지 않음
+					if (!temp[3].equals(newRegion)) {
+						// 선택된 행정구역으로 담당 구역 업데이트
+						temp[3] = newRegion;
+						System.out.println();
+						System.out.println("담당 구역이 성공적으로 변경되었습니다.");
 
-	    // 파일이 사용 중이지 않은 상태에서 삭제 및 이름 변경
-	    File userRegionFile = new File(Path.USERREGION);
-	    File userRegionTempFile = new File(Path.USERREGIONTEMP);
+					} else {
+						System.out.println();
+						System.out.println("이미 해당 구역으로 할당되어 있습니다.");
+					}
+				}
 
-	    if (userRegionFile.exists()) {
-	        userRegionFile.delete(); // 기존 파일 삭제
-	    }
+				// 변경된 라인을 새로운 파일에 쓰기
+				writer.write(String.join("■", temp) + "\n");
+			}
+			MainView.pause();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-	    if (userRegionTempFile.exists()) {
-	        userRegionTempFile.renameTo(userRegionFile); // 새 파일을 기존 파일 이름으로 변경
-	    }
+		// 파일이 사용 중이지 않은 상태에서 삭제 및 이름 변경
+		File userRegionFile = new File(Path.USERREGION);
+		File userRegionTempFile = new File(Path.USERREGIONTEMP);
+
+		if (userRegionFile.exists()) {
+			userRegionFile.delete(); // 기존 파일 삭제
+		}
+
+		if (userRegionTempFile.exists()) {
+			userRegionTempFile.renameTo(userRegionFile); // 새 파일을 기존 파일 이름으로 변경
+		}
 	}
 
-//    public static void readAndPrintUserRegionFile() {
-//        try {
-//            List<String> lines = Files.readAllLines(Paths.get(Path.USERREGION));
-//            for (String line : lines) {
-//                System.out.println(line);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 }

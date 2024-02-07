@@ -30,9 +30,11 @@ public class Find {
         } else if (Main.selectNum.equals("2")) {
             findPw();
         } else {
+        	System.out.println();
         	System.out.println("잘못된 번호입니다.");
+        	
         }
-        
+        System.out.println();
     }
 
     //TODO findId 메서드 추가
@@ -40,11 +42,13 @@ public class Find {
     //해당하는 아이디를 반환하는 메서드
     private static void findId() {
         Scanner scan = new Scanner(System.in);
-
+        
+        System.out.println();
         System.out.print("이름: ");
         String name = scan.nextLine();
 
-        System.out.print("전화번호: ");
+        System.out.println();
+        System.out.print("전화번호(xxx-xxxx-xxxx): ");
         String phoneNum = scan.nextLine();
 
         String memberId = findMemberId(name, phoneNum);
@@ -72,7 +76,7 @@ public class Find {
 				MainView.singleLine();
 				System.out.println();
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-				MainView.checkContinue();
+				MainView.checkContinueBoolean();
 			}
          
         }
@@ -95,10 +99,13 @@ public class Find {
     private static void findPw() {
         Scanner scan = new Scanner(System.in);
 
+        System.out.println();
         System.out.print("아이디: ");
+        
         String Id = scan.nextLine();
-
-        System.out.print("전화번호: ");
+        
+        System.out.println();
+        System.out.print("전화번호(xxx-xxxx-xxxx): ");
         String phoneNum = scan.nextLine();
 
         String memberPw = findMemberPw(Id, phoneNum);

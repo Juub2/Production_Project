@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
-import com.project.factory.member.Modify;
-import com.project.factory.view.dept.ProductionView;
 import com.project.factory.view.dept.DistributionView;
+//import com.project.factory.view.dept.DistributionView;
 import com.project.factory.view.dept.HumanView;
 import com.project.factory.view.dept.ManagementView;
+import com.project.factory.view.dept.ProductionView;
+
 
 
 public class MainView {
@@ -198,12 +199,16 @@ public class MainView {
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {
-		System.out.println("===========================================================================");
+		System.out.println("==========================================================================================================================================");
 	}
 
 	// TODO singnleLine 메서드 추가
 	public static void singleLine() {
 		System.out.println("---------------------------------------------------------------------------");
+	}
+	public static void singnleLine() {
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 }

@@ -21,5 +21,6 @@ public class Path {
 	public static final String DELIVERYMEMBER = "data\\deliveryMember.txt";	//유통사원 담당지역 정보
 	public static final String NEWMEMBERTEMP = "data\\newMemberTemp.txt";	//유통사원 담당지역 정보
 	public static final String ASSIGNORDER = "data\\assignOrder.txt";	//유통 사원 배정된 주문서
+	public static final String CHECKASSIGNORDER = "data\\checkAssignOrder.txt";	//유통 사원 배정된 주문서
 	
 }

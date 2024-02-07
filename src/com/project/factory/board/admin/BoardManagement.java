@@ -373,7 +373,7 @@ public class BoardManagement {
 			System.out.print("삭제할 날짜: ");
 			BoardManagement.deleteDate = scan.nextLine();
 
-			if (!Today.checkDate(BoardManagement.deleteDate) || Today.invalidateDate(deleteDate)) {
+			if (Today.invalidateDate(deleteDate)) {
 				System.out.println();
 				System.out.println("잘못된 형식의 날짜입니다.");
 				System.out.println("날짜는 10글자(하이픈 포함), 숫자만 입력 가능합니다.");

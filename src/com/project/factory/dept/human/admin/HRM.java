@@ -1,6 +1,5 @@
 package com.project.factory.dept.human.admin;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,14 +24,14 @@ public class HRM {
 		hrmSelect();
 	}
 
-	public static boolean continueOperation() {
-		Scanner scan = new Scanner(System.in);
-
-		System.out.print("계속 진행하시겠습니까? (Y/N): ");
-		String answer = scan.nextLine().toUpperCase();
-
-		return answer.equals("Y");
-	}
+//	public static boolean continueOperation() {
+//		Scanner scan = new Scanner(System.in);
+//
+//		System.out.print("계속 진행하시겠습니까? (Y/N): ");
+//		String answer = scan.nextLine().toUpperCase();
+//
+//		return answer.equals("Y");
+//	}
 
 	public static void hrmSelect() {
 		Scanner scan = new Scanner(System.in);
@@ -70,7 +69,7 @@ public class HRM {
 			System.out.println("잘못된 번호 입력입니다.");
 			System.out.println();
 
-			if (continueOperation()) {
+			if (MainView.checkContinueBoolean()) {
 				hrd();
 			} else {
 				MainView.pause();
