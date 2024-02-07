@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class Dummy {
 
-	public static void makeUserData(String departCode) {
+	public static void makeUserData(String departCode, int num) {
 		try {
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\testmem.txt", true));
 			Random rnd = new Random();
 			String depart = "";
 			String id = "";
@@ -18,7 +18,7 @@ public class Dummy {
 			String result = "";
 			String email = "";
 
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < num; i++) {
 				// 이름 생성
 				String[] lastName = { "김", "박", "이", "송", "윤", "최", "황", "손", "한", "조", "백", "정" };
 				String[] firstName = { "준", "미", "섭", "영", "욱", "원", "철", "지", "숙", "현", "민", "희", "대", "형", "나", "우",
@@ -27,7 +27,7 @@ public class Dummy {
 				name = lastName[rnd.nextInt(lastName.length)] + firstName[rnd.nextInt(firstName.length)]
 						+ firstName[rnd.nextInt(firstName.length)];
 				
-			for (int j = 0; j < 30; j++) {
+			for (int j = 0; j <num; j++) {
 				//생년월일 생성
 				//생년
 				String[] num1 = {"7", "8", "9"};

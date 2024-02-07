@@ -3,7 +3,6 @@ package com.project.factory.dept.production.admin.resource;
 public class TodayProduction {
 	private int todayProductNum;
 	private int todayDefectiveNum;
-	private int finalTodayProductNum;
 	private String model;
 	
 	

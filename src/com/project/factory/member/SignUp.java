@@ -113,8 +113,9 @@ public class SignUp {
 							}
 							
 							// 수정된 파일을 가지고 원본 파일에 덮어쓰기
-							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBERTEMP));
+							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER));
 							writer.write(txt);
+							
 							
 							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart, id + "@auto.com");
 							Data.memberList.add(member);

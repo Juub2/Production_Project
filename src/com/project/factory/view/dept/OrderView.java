@@ -22,7 +22,7 @@ public class OrderView {
 			System.out.println();
 			System.out.println("2. 배정 수정");
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			
 			System.out.print("번호 입력: ");

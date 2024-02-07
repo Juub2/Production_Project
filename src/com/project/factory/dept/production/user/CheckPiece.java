@@ -36,19 +36,25 @@ public class CheckPiece {
 		Scanner sc = new Scanner(System.in);
 		ProductionView.addPieceMenu();
 		String addPieceType = "";
-		String answer2 = "";
 		System.out.print("해당업체 ID: ");
 		String companyID = sc.nextLine();
+		
+		
+		
 
 		for (Piece piece : PieceData.pieceList) {
 			if (piece.getPieceCompanyId().equals(companyID)) {
 				addPieceType = piece.getPieceType();
 				break;
-			} // for
+			}
+			
 		}
+		
+
+		
 		System.out.printf("%s : ", addPieceType);
 		int plusPieceNum = sc.nextInt();
-		System.out.print("해당 내용으로 발주를 진행하시겠습니까? (Y/N)");
+		System.out.print("해당 내용으로 발주를 진행하시겠습니까? (Y/N): ");
 		String result = sc.next();
 	
 			
@@ -58,13 +64,13 @@ public class CheckPiece {
 					piece.setPieceNum(piece.getPieceNum() + plusPieceNum);
 					System.out.println("발주가 완료되었습니다.");
 					System.out.println("부품 입고는 2일정도 소요됩니다.");
-					MainView.pause();
-					break;
 				}
 			}
+			MainView.pause();
+			return;
 			
 		}else if(result.equals("N") || result.equals("n")) {
-			System.out.println("발주안한대요");
+			System.out.println("발주가 취소되었습니다.");
 		}else {
 			CheckPiece.checkContinue();
 			
@@ -87,5 +93,6 @@ public class CheckPiece {
 			CheckPiece.checkContinue();
 		}
 	}
+	
 
 }

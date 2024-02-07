@@ -34,7 +34,7 @@ public class CheckDest {
 			System.out.println();
 			System.out.println("오늘 배정받은 배송지가 없습니다.");
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			MainView.pause();
 			return;
 		}
@@ -46,7 +46,7 @@ public class CheckDest {
 					System.out.println();
 					System.out.println("배송을 모두 완료했습니다.");
 					System.out.println();
-					MainView.singnleLine();
+					MainView.singleLine();
 					MainView.pause();
 					return;
 				}

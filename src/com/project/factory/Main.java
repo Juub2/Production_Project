@@ -2,12 +2,12 @@ package com.project.factory;
 
 import java.util.Scanner;
 
-import com.project.factory.dept.distribution.admin.DestManagement;
-import com.project.factory.dept.distribution.admin.OrderAssign;
-import com.project.factory.dept.distribution.user.CheckDest;
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
+import com.project.factory.dept.distribution.admin.DestManagement;
+import com.project.factory.dept.distribution.admin.OrderAssign;
+import com.project.factory.dept.distribution.user.CheckDest;
 import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
 import com.project.factory.dept.production.admin.ProductionManagement;
@@ -25,13 +25,15 @@ import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.member.admin.InventorySearch;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
+import com.project.factory.resource.Dummy;
 import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
-import com.project.factory.view.dept.HumanView;
 
 public class Main {
+	
+	
 
 	// TODO selectNum String으로 변경
 	public static String selectNum;
