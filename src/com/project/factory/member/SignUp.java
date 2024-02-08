@@ -40,11 +40,6 @@ public class SignUp {
 			boolean loop = true;
 			
 			while(loop) {
-				System.out.println();
-				MainView.singleLine();
-				System.out.println("\t\t\t\t회원가입");
-				MainView.singleLine();
-				System.out.println();
 				System.out.println("회원가입을 진행할 사원 번호를 입력해주세요.");
 				System.out.println();   
 				System.out.print("사원번호: ");
@@ -113,7 +108,6 @@ public class SignUp {
 							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true));
 							writer.write(txt);
 							
-							
 							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart, id + "@auto.com");
 							Data.memberList.add(member);
 							writer.close();
@@ -122,11 +116,11 @@ public class SignUp {
 							pwLoop = false;
 						} else {
 							System.out.println("비밀번호는 10-16자, 영문자, 숫자만 가능합니다.");
-							checkContinue();
+							MainView.checkContinue();
 						}
 					}
 					loop = false;
-					MainView.pause(); 
+					MainView.pause(); // 왜 문제 ? + newMember에서 추가된 부분 삭제시키기
 					break;
 					
 				} else {
@@ -155,13 +149,13 @@ public class SignUp {
 			cheackid();
 		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
 			MainView.pause();
-			MainView.mainMenu();
 		} else {
 			System.out.println();
 			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			checkContinue();
+			SignUp.checkContinue();
 		}
 	}
+
 }
