@@ -190,7 +190,7 @@ public class BoardManagement {
 		boolean loop = false;
 
 		while (true) {
-			BoardManagementView.boardEditView();
+			BoardManagementView.boardDeleteView();
 
 			Main.selectNum = scan.nextLine();
 

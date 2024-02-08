@@ -132,7 +132,7 @@ public class ProductionView {
 			System.out.printf( "\t%3d대\t", ProductionTarget.TargetNum.get(model));
 		}
 		System.out.println();
-		System.out.printf("  재고량\t\t |", slash);
+		System.out.printf("  재고량\t |", slash);
 		for(ModelInfo model : ModelInfoData.modelInfoList) {
 			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}

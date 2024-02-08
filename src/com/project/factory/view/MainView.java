@@ -17,6 +17,11 @@ public class MainView {
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void logo() {
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		System.out.print("                                                           ~::::::~             .:::::::::::::::::::::::::~                       \r\n"
 				+ "                                                      .-=@$===**====@#-,        :@@=====================$@$                       \r\n"
 				+ "                                                     =@#~   ..@@:.   .#@@.      :@@,,,,,,,,,,,,,,,,,,,,,!@$                       \r\n"
