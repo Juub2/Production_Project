@@ -7,10 +7,7 @@ import com.project.factory.view.MainView;
 public class InventorySearch {
 	// 재고확인
 	public static void checkInventory() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t재고 확인");
-		MainView.singleLine();
+		MainView.title("재고 확인");
 		
 		System.out.println();
 		for (ModelInfo modelInventory : ModelInfoData.modelInfoList) {

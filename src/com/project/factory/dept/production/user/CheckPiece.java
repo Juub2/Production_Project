@@ -38,9 +38,7 @@ public class CheckPiece {
 		String addPieceType = "";
 		System.out.print("해당업체 ID: ");
 		String companyID = sc.nextLine();
-		
-		
-		
+		System.out.println();
 
 		for (Piece piece : PieceData.pieceList) {
 			if (piece.getPieceCompanyId().equals(companyID)) {
@@ -50,10 +48,9 @@ public class CheckPiece {
 			
 		}
 		
-
-		
-		System.out.printf("%s : ", addPieceType);
+		System.out.printf("%s의 수량: ", addPieceType);
 		int plusPieceNum = sc.nextInt();
+		System.out.println();
 		System.out.print("해당 내용으로 발주를 진행하시겠습니까? (Y/N): ");
 		String result = sc.next();
 	
@@ -62,6 +59,7 @@ public class CheckPiece {
 			for (Piece piece : PieceData.pieceList) {
 				if (piece.getPieceType().equals(addPieceType)) {
 					piece.setPieceNum(piece.getPieceNum() + plusPieceNum);
+					System.out.println();
 					System.out.println("발주가 완료되었습니다.");
 					System.out.println("부품 입고는 2일정도 소요됩니다.");
 				}

@@ -71,9 +71,8 @@ public class BoardManagement {
 			BoardManagementView.boardWriteView();
 
 			if (BoardManagement.writeDeleteDate()) {
-
+				System.out.println();
 				if (BoardManagement.writeTitle()) {
-
 					if (BoardManagement.writeContents()) {
 						// 공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
 						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + Identify.dept + "■"

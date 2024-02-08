@@ -10,11 +10,9 @@ import com.project.factory.view.MainView;
 public class AgencyManagementView {
 
 	public static void agencyManagementMenu() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("\t\t\t\t대리점 관리");
-		MainView.doubleLine();
+		MainView.title("대리점 관리");
 
+		System.out.println();
 		AgencyManagementView.agencyManagementListView();
 
 		System.out.println();
@@ -28,13 +26,10 @@ public class AgencyManagementView {
 	}
 
 	public static void deleteAgencyMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t대리점 삭제");
-		MainView.singleLine();
+		MainView.title("대리점 삭제");
 		System.out.println();
 		System.out.println("삭제하실 대리점 이름을 입력해주세요.");
-		MainView.singleLine();
+		System.out.println();
 		System.out.print("대리점명: ");
 	}
 

@@ -8,29 +8,31 @@ import com.project.factory.resource.dept.AssignData;
 
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.CheckDestView;
+import com.project.factory.view.dept.DistributionView;
 
 public class CheckDest {
 
 	public static String selectNum;
+	public static int count;
 	
 
 
 	public static void checkDest() {
 		AssignData.load();
 	
-		CheckDestView.checkDestTitle();
+		MainView.title("배송지 조회 및 유통");
 
 		boolean hasOrders = false;
 
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getUserId().equals(Identify.auth)) {
 				hasOrders = true;
+				count++;
 				break;
 			}
 		}
 
 		if (!hasOrders) {
-			MainView.doubleLine();
 			System.out.println();
 			System.out.println("오늘 배정받은 배송지가 없습니다.");
 			System.out.println();
@@ -41,7 +43,7 @@ public class CheckDest {
 		
 		for (Assign assignOrder : AssignData.assignList) {
 			if(assignOrder.getUserId().equals(Identify.auth)) {
-				if(assignOrder.getState().equals("완료") ) {
+				if(count == DistributionView.completeOrderCount ) {
 					
 					System.out.println();
 					System.out.println("배송을 모두 완료했습니다.");
@@ -57,11 +59,8 @@ public class CheckDest {
 		
 		System.out.println();
 		MainView.singleLine();
-		System.out.println();
 		
 		insertListNum();
-
-
 
 		deleteOrder(selectNum);
 
@@ -152,11 +151,11 @@ public class CheckDest {
 		
 		System.out.println();
 
-		System.out.println("[주문서 번호]\t[구역]\t\t[대리점명]\t[모델명]\t[수량]\t[상태]");
+		System.out.printf("%-8s\t%-6s\t%-10s\t%-8s\t%-5s\t%-5s\n","[주문서 번호]","[구역]","[대리점명]","[모델명]","[수량]","[상태]");
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getUserId().equals(Identify.auth)) {
-				System.out.printf("%s\t\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getId(), assignOrder.getArea(),
-						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
+				System.out.printf("%-8s\t%-6s\t%-10s\t%-8s\t%-5s\t%-5s\n", assignOrder.getId(), assignOrder.getArea(),
+                        assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
 			}
 
 		}

@@ -17,10 +17,7 @@ public class SignUp {
 	private static final Object[] String = null;
 
 	public static void cheackid() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("\t\t\t\t회원가입");
-		MainView.doubleLine();
+		MainView.title("회원가입");
 		
 		try {
 			// 사원번호
@@ -112,8 +109,8 @@ public class SignUp {
 								txt += line2.replace(tempMember, "") + "\r\n";
 							}
 							
-							// 수정된 파일을 가지고 원본 파일에 덮어쓰기
-							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER));
+							// 수정된 파일을 가지고 원본 파일에 이어쓰기
+							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true));
 							writer.write(txt);
 							
 							

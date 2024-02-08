@@ -41,7 +41,6 @@ public class Main {
 	public static Object production;
 
 	public static void main(String[] args) {
-
 		// TODO loop 변수 추가 > 초기 화면 메뉴 반복문
 		boolean loop = true;
 		boolean fail = false;
@@ -52,7 +51,7 @@ public class Main {
 		TodayProductionData.todayInventoryLoad();
 		ProductionTarget.load_target();
 		CommuteData.load();
-		
+
 		MainView.logo();
 
 		while (loop) {
@@ -80,7 +79,7 @@ public class Main {
 					Data.save();
 					break;
 				} else {
-					System.out.println("null Main잘못된 번호입니다.");
+					System.out.println("잘못된 번호입니다.");
 					MainView.pause();
 				}
 			} else if (Identify.auth != null) {
@@ -224,7 +223,7 @@ public class Main {
 				}
 
 				if (fail) {
-					System.out.println("not null Main잘못된 번호입니다.");
+					System.out.println("잘못된 번호입니다.");
 					MainView.pause();
 				}
 			} // 로그인 한 경우

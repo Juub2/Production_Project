@@ -10,7 +10,7 @@ public class ModifyView {
 	public static void modifyMenu() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("\t\t\t\t개인정보 조회 및 수정");
+		System.out.println("\t\t\t\t\t\t\t개인정보 조회 및 수정");
 		MainView.doubleLine();
 
 		for (Members member : Data.memberList) {
@@ -22,6 +22,7 @@ public class ModifyView {
 		}
 		MainView.singleLine();
 
+		System.out.println();
 		System.out.println("수정하고 싶은 개인정보 번호를 선택해주세요.");
 		System.out.println();
 		System.out.println("1. 이름");

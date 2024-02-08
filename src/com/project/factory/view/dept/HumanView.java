@@ -15,7 +15,7 @@ public class HumanView {
 	public static void hrmTitle() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("     직원관리(입사,퇴사)");
+		System.out.println("\t\t\t\t\t\t\t직원관리(입사,퇴사)");
 		MainView.doubleLine();
 	}
 	

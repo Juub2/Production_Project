@@ -8,15 +8,12 @@ import com.project.factory.view.MainView;
 public class MyOrderView {
 
 	public static void myOrderMenu() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("\t\t\t\t주문서 관리");
-		MainView.doubleLine();
+		MainView.title("주문서 관리");
 
 		System.out.println();
 		System.out.println("1. 주문서 작성");
 		System.out.println("2. 주문서 수정");
-		System.out.println("3. 주문서 취소");
+		System.out.println("3. 주문서 삭제");
 		System.out.println("4. 주문서 조회");
 		System.out.println();
 		MainView.singleLine();
@@ -24,10 +21,7 @@ public class MyOrderView {
 	}
 
 	public static void orderAddMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t주문서 작성");
-		MainView.singleLine();
+		MainView.title("주문서 작성");
 
 		MyOrderView.modelView();
 
@@ -37,39 +31,32 @@ public class MyOrderView {
 	}
 
 	public static void orderEditMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t주문서 수정");
-		MainView.singleLine();
+		MainView.title("주문서 수정");
 
 		MyOrderView.orderListView();
 
 		System.out.println();
-		System.out.println("수정하실 주문서 번호를 입력해주세요.");
 		MainView.singleLine();
+		System.out.println("수정하실 주문서 번호를 입력해주세요.");
+		System.out.println();
 		System.out.print("번호 입력: ");
 	}
 	
 	public static void orderDeleteMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t주문서 삭제");
-		MainView.singleLine();
+		MainView.title("주문서 삭제");
 		
 		MyOrderView.orderListView();
 		
 		System.out.println();
-		System.out.println("삭제하실 주문서 번호를 입력해주세요.");
 		MainView.singleLine();
+		System.out.println("삭제하실 주문서 번호를 입력해주세요.");
+		System.out.println();
 		System.out.print("번호 입력: ");
 	}
 	
 	public static void orderViewMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t주문서 조회");
+		MainView.title("주문서 조회");
 		
-		MainView.singleLine();
 		System.out.println();
 		MyOrderView.orderView();
 		MainView.singleLine();
@@ -85,6 +72,7 @@ public class MyOrderView {
 	}
 
 	private static void orderListView() {
+		System.out.println();
 		System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
 
 		for (Order order : OrderData.orderList) {

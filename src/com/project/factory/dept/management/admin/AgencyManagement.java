@@ -60,20 +60,18 @@ public class AgencyManagement {
 	private static void registerAgency() {
 
 		try {
-			System.out.println();
-			MainView.singleLine();
-			System.out.println("\t\t\t\t대리점 등록");
-			MainView.singleLine();
+			MainView.title("대리점 등록");
 			System.out.println();
 
 			if (AgencyManagement.registerAgencyName()) {
+				System.out.println();
 				if (AgencyManagement.registerAgencyPhoneNum()) {
+					System.out.println();
 					if (AgencyManagement.registerAgencyArea()) {
+						System.out.println();
 						if (AgencyManagement.registerAgencyAddress()) {
 							if (AgencyManagement.checkRegisterContinue()) {
-								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인
-																												// 경우
-																												// 이어쓰기
+								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인 경우 이어쓰기
 
 								AgencyManagement.createAgencyId();// 대리점 아이디 생성
 
@@ -149,9 +147,13 @@ public class AgencyManagement {
 					loop = true;
 									
 					System.out.println();
+					MainView.singleLine();
+					System.out.println();
 					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점명]", "[전화번호]", "[구역]", "[주소]");
 					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\n", member.getName(),member.getPhoneNum(),member.getArea(member.getDept()), member.getAddress());
-
+					System.out.println();
+					MainView.singleLine();
+					
 					if (AgencyManagement.checkDeleteContinue()) {
 						Data.memberList.remove(member);// 해당 member 삭제
 

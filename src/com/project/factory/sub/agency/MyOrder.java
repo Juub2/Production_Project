@@ -64,7 +64,8 @@ public class MyOrder {
 
 				MyOrderView.orderAddMenu();
 				Main.selectNum = scan.nextLine();
-
+				System.out.println();
+				
 				if (MyOrder.checkModelExists()) { // MyOrder.modelId 설정
 
 					if (MyOrder.writeQuantity()) {
@@ -115,9 +116,8 @@ public class MyOrder {
 		boolean loop = false;
 		while (true) {
 			MyOrderView.orderEditMenu();
-
 			MyOrder.id = scan.nextLine();// 주문서 번호
-
+			System.out.println();
 			if (checkOrderIdExists()) {
 				for (Order order : OrderData.orderList) {
 					if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {

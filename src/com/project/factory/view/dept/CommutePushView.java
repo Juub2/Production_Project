@@ -10,7 +10,7 @@ public class CommutePushView {
 	public static void commutePushViewMain() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("       근태 등록");
+		System.out.println("\t\t\t\t\t\t\t근태 등록");
 		MainView.doubleLine();
 	}
 
@@ -20,7 +20,7 @@ public class CommutePushView {
 
 		//로그인이 안 된 상태이면
 			System.out.println();
-			System.out.println("1.출근하기");
+			System.out.println("1. 출근하기");
 			System.out.println();
 			MainView.singleLine();
 			
@@ -35,7 +35,7 @@ public class CommutePushView {
 
 		//로그인이 된 상태이면
 			System.out.println();
-			System.out.println("2.퇴근하기");
+			System.out.println("2. 퇴근하기");
 			System.out.println();
 			MainView.singleLine();
 			

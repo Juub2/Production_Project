@@ -23,12 +23,12 @@ public class DestManagement {
 	public static void destManagement() {
 		DistributionData.load();
 
-		RegionView.RegionViewTitle();
-		System.out.println();
+		MainView.title("사원 배송 구역 관리");
 
 		// userRegion.txt에 있는 파일 출력
 		// readAndPrintUserRegionFile();
 
+		System.out.println();
 		System.out.println("[사원번호]\t[이름]\t[전화번호]\t[담당구역]");
 
 		for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
@@ -36,7 +36,12 @@ public class DestManagement {
 					employeeInfo.getPhoneNum(), employeeInfo.getAssignedRegion());
 		}
 
+		System.out.println();
+		MainView.singleLine();
+		
 		if (checkMemberId()) {
+			System.out.println();
+		    MainView.singleLine();
 			if (checkMember()) {
 				area();
 			} else {
@@ -51,8 +56,9 @@ public class DestManagement {
 	    System.out.println();
 	    System.out.print("담당 구역을 변경하실 사원의 사원번호를 입력하세요: ");
 
-	    id = scan.nextLine();
-	
+		id = scan.nextLine();
+		
+		System.out.println();
 	    for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
 	        if (employeeInfo.getId().equals(id)) {
 	            System.out.println("[사원번호]\t[이름]\t[전화번호]\t[담당구역]");
@@ -63,8 +69,8 @@ public class DestManagement {
 	        } 
 	    }
 	    
+	    
 	    // 반복문이 끝난 후에 해당 코드가 실행되므로 사원을 찾지 못한 경우에만 실행됨
-	    System.out.println();
 	    System.out.println("해당 사원을 찾을 수 없습니다.");
 	    if (MainView.checkContinueBoolean()) {
 	        // 재귀 호출이 아니라 반복문을 다시 실행하도록 수정
@@ -77,7 +83,6 @@ public class DestManagement {
 
 	private static boolean checkMember() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println();
 		System.out.println("해당 직원이 맞습니까?(Y/N)");
 		System.out.print("입력: ");
 
@@ -105,9 +110,6 @@ public class DestManagement {
 		AreaView.areaView();
 		System.out.println();
 		MainView.singleLine();
-		
-		System.out.print("행정구역 번호: ");
-
 
 	    Scanner scanner = new Scanner(System.in);
 	    int selectedRegion;

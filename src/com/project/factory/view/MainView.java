@@ -59,6 +59,8 @@ public class MainView {
 
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
+		
+		MainView.title("쌍용 테크");
 
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");
@@ -159,12 +161,17 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
+		System.out.println();
+		System.out.println();
 
 	}
 	
 	public static void pauseToSel() {
+		System.out.println();
 		System.out.println("엔터를 치면 선택 화면으로 돌아갑니다.");
 		scan.nextLine();
+		System.out.println();
+		System.out.println();
 		System.out.println();
 	}
 
@@ -215,4 +222,10 @@ public class MainView {
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
+	public static void title(String title) {
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t" + title);
+		MainView.doubleLine();
+	}
 }

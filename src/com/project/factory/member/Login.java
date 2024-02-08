@@ -12,8 +12,14 @@ public class Login {
 	public static void login() {
 		int checkId = 0;
 		int checkPw = 0;
-		Scanner scan = new Scanner(System.in);
+		
 		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t로그인");
+		MainView.doubleLine();
+		System.out.println();
+		
+		Scanner scan = new Scanner(System.in);
 		System.out.print("아이디 입력: ");
 		String id = scan.nextLine();
 		System.out.print("비밀번호 입력: ");

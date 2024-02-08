@@ -71,6 +71,7 @@ public class CommuteSearch {
                 MainView.pause();
             }
         } else {
+        	System.out.println();
             System.out.println("잘못된 번호입니다.");
             MainView.checkContinue();
             if (Main.answer.equalsIgnoreCase("Y")) {
@@ -129,6 +130,9 @@ public class CommuteSearch {
             }
         }
 
-        MainView.pause();
+        System.out.println();
+        MainView.pauseToSel();
+        CommuteSearch.commuteSearch();
+        return;
     }
 }

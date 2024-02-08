@@ -30,15 +30,13 @@ public class ProductionView {
 	 * 생산관리 View
 	 */
 	public static void viewproductionMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t생산 관리");
-		MainView.singleLine();
+		MainView.title("생산 관리");
 		System.out.println();
 		System.out.println("1. 생산 시작");
 		System.out.println("2. 생산 정지");
 		System.out.println("3. 생산 종료");
 		System.out.println();
+		MainView.singleLine();
 	}
 	
 	
@@ -47,9 +45,7 @@ public class ProductionView {
 	 * 불량품 개수 입력 View
 	 */
 	public static void viewModel() {
-		MainView.singleLine();
-		System.out.println();
-		System.out.println("모델별 불량품 개수를 입력해주세요");
+		MainView.title("불량품 입력");
 		System.out.println();
 		int count = 1;
 		for (TodayProduction modelInventory : TodayProductionData.todayProductionList) {
@@ -57,6 +53,7 @@ public class ProductionView {
 			count++;
 		}
 		System.out.println();
+		MainView.singleLine();
 		
 	}
 	
@@ -70,17 +67,16 @@ public class ProductionView {
 	}
 	
 	public static void checkPieceMenu() {
-		System.out.println();
-		MainView.singleLine();
-		System.out.println("\t\t\t\t부품 재고 파악 및 발주");
-		MainView.singleLine();
+		MainView.title("부품 재고 파악 및 발주");
 		System.out.println();
 		System.out.println("1. 부품 재고 파악");
 		System.out.println("2. 부품 발주");
 		System.out.println();
+		MainView.singleLine();
 	}
 	
 	public static void checkPiece() {
+		MainView.title("부품 재고 파악");
 		int wheelSum = 0;
 		int frameSum = 0;
 		int leatherSum = 0;
@@ -109,11 +105,11 @@ public class ProductionView {
 			}
 		}
 		System.out.println();
+		MainView.singleLine();
 	}
 	
 	public static void addPieceMenu() {
-		System.out.println();
-		MainView.singleLine();
+		MainView.title("부품 발주");
 		System.out.println();
 		System.out.println("[하청업체ID]\t[하청업체 이름]\t\t  [전화번호]");
 		for(Piece piece : PieceData.pieceList) {
@@ -130,13 +126,13 @@ public class ProductionView {
 		System.out.println(Today.day());
 		System.out.println();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
-		System.out.printf("생산 목표치\t :");
+		System.out.printf("생산 목표치\t |");
 		Set<String> keySet = ProductionTarget.TargetNum.keySet();
 		for (String model : keySet) {
 			System.out.printf( "\t%3d대\t", ProductionTarget.TargetNum.get(model));
 		}
 		System.out.println();
-		System.out.printf("  재고량\t\t :", slash);
+		System.out.printf("  재고량\t\t |", slash);
 		for(ModelInfo model : ModelInfoData.modelInfoList) {
 			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}

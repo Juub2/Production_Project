@@ -24,15 +24,6 @@ public class HRM {
 		hrmSelect();
 	}
 
-//	public static boolean continueOperation() {
-//		Scanner scan = new Scanner(System.in);
-//
-//		System.out.print("계속 진행하시겠습니까? (Y/N): ");
-//		String answer = scan.nextLine().toUpperCase();
-//
-//		return answer.equals("Y");
-//	}
-
 	public static void hrmSelect() {
 		Scanner scan = new Scanner(System.in);
 
@@ -42,15 +33,12 @@ public class HRM {
 		System.out.println("3. 사원 조회");
 		System.out.println();
 		MainView.singleLine();
-		System.out.println();
 
 		System.out.print("번호 입력: ");
 
 		Main.selectNum = scan.nextLine();
 
-
 		if (Main.selectNum.equals("1")) {
-
 
 			// 리스트가 초기화되고 사원번호가 모두 부여된 경우에만 메시지 출력
 			if (NewMemberData.NewMemberList.isEmpty()) {
@@ -78,10 +66,11 @@ public class HRM {
 	}
 
 	private static void addUser() {
+		
 		newMemberList();
 
 		System.out.println();
-		System.out.println("1. 사원번호 생성하기");
+		System.out.println("1. 사원 번호 생성하기");
 		MainView.singleLine();
 		System.out.print("번호 입력: ");
 
@@ -98,12 +87,15 @@ public class HRM {
 	}
 
 	private static void deleteUser() {
+		MainView.title("퇴사 관리");
+		
 		System.out.println();
 		System.out.print("사원 번호 입력: ");
 
 		Scanner scan = new Scanner(System.in);
 
 		String id = scan.nextLine();
+		System.out.println();
 
 		Iterator<Members> iterator = Data.memberList.iterator();
 		boolean found = false; // 일치하는 회원이 있는지 여부를 나타내는 변수
@@ -112,25 +104,28 @@ public class HRM {
 			Members member = iterator.next();
 
 			if (member.getId().equals(id)) {
-				MainView.doubleLine();
+				MainView.singleLine();
 				System.out.println();
-				System.out.println("[사원번호]\t[이름]\t[생년월일]\t\t[전화번호]\t\t[주소]\t[부서]");
-				System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\n", member.getId() ,member.getName(), member.getBirth(),
-						member.getPhoneNum(), member.getAddress(), member.getDept());
+				System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
+                System.out.println();
 
-				System.out.println();
-				MainView.doubleLine();
+                System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n", member.getId(), member.getName(), member.getBirth(),
+                        member.getPhoneNum(), member.getAddress(),member.getDept());
+				MainView.singleLine();
 
 				System.out.println();
 				System.out.print("퇴사 처리하시겠습니까? (Y/N): ");
 				String answer = scan.nextLine().toUpperCase();
 
 				if (answer.equals("Y")) {
+					System.out.println();
 					System.out.println("퇴사 처리가 완료되었습니다.");
 					iterator.remove(); // Remove the member from the list
 
 					// 파일에서도 삭제하기 위해 새로운 데이터를 파일에 쓰기
 					Data.save();
+					
+					MainView.pause();
 
 				} else if (answer.equals("N")) {
 					System.out.println("퇴사 처리가 취소되었습니다.");
@@ -159,18 +154,20 @@ public class HRM {
 	}
 
 	private static void searchUser() {
+		MainView.title("사원 조회");
 		System.out.println();
 		System.out.print("사원 이름 입력: ");
 
 		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();
-		
-		  if (name.isEmpty()) {
-			  System.out.println();
-		        System.out.println("사원 이름을 입력해주세요.");
-		        hrd();
-		        return;
-		    }
+		System.out.println();
+
+		if (name.isEmpty()) {
+			System.out.println();
+			System.out.println("사원 이름을 입력해주세요.");
+			hrd();
+			return;
+		}
 
 		Iterator<Members> iterator = Data.memberList.iterator();
 		boolean found = false; // 일치하는 회원이 있는지 여부를 나타내는 변수
@@ -180,18 +177,15 @@ public class HRM {
 
 			if (member.getName().contains(name)) {
 				if (!found) {
-					MainView.doubleLine();
+					MainView.singleLine();
 					System.out.println();
-					System.out.println("[사원번호]\t[이름]\t\t[생년월일]\t\t[전화번호]\t\t[주소]\t\t\t\t[부서]");
+					System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
 				}
 
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%s\t%s\n", member.getId(), member.getName(), member.getBirth(),
-						member.getPhoneNum(), member.getAddress(), member.getDept());
-				System.out.println();
+				 System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n", member.getId(), member.getName(), member.getBirth(),
+	                        member.getPhoneNum(), member.getAddress(),member.getDept());
 
 				found = true; // 일치하는 회원이 있음을 표시
-				
-				MainView.pause(); // 검색이 완료된 후에 초기 화면으로 돌아감
 			}
 		}
 
@@ -201,14 +195,17 @@ public class HRM {
 			System.out.println();
 			hrd();
 		}
+		System.out.println();
+		MainView.singleLine();
+		MainView.pause(); // 검색이 완료된 후에 초기 화면으로 돌아감
 
-		
 	}
 
 	private static void createUserId() {
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		boolean allAssigned = true;
 
+		System.out.println();
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();
 			String department = newMember.getDept();
@@ -237,7 +234,6 @@ public class HRM {
 
 				System.out.println("생성된 사원번호: " + newMember.getId());
 
-
 				// 사원번호가 생성되면 newMemberTemp.txt에 저장
 
 				NewMemberTempData.save(newMember);
@@ -246,15 +242,19 @@ public class HRM {
 		NewMemberData.NewMemberList.clear();
 
 		NewMemberData.save();
-
-
+		
+		MainView.pause();
 	}
 
 	private static void newMemberList() {
-		MainView.doubleLine();
+		MainView.title("입사 관리");
+
 		System.out.println();
-		System.out.println("[신입사원 리스트]");
-		System.out.println("[사원번호]\t[비밀번호]\t[이름]\t\t[전화번호]\t\t[생년월일]\t\t[주소]\t\t\t[부서]\t[직급]");
+		System.out.println("신입사원 리스트");
+
+		System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s", "[사원번호]", "[비밀번호]", "[이름]", "[전화번호]",
+				"[생년월일]", "[주소]", "[부서]", "[직급]");
+		System.out.println();
 
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		List<NewMembers> tempList = new ArrayList<>();
@@ -262,9 +262,10 @@ public class HRM {
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();
 
-			System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t%s\t%s\n", newMember.getId(),newMember.getPw() ,newMember.getName(),
-					newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
-					newMember.getLevel());
+			System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s", newMember.getId(), newMember.getPw(),
+					newMember.getName(), newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(),
+					newMember.getDept(), newMember.getLevel());
+			System.out.println();
 
 			if (!"0".equals(newMember.getId())) {
 				// 생성된 사원번호를 부여한 후에 해당 멤버를 리스트에서 삭제
