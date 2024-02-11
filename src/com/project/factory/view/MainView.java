@@ -10,12 +10,16 @@ import com.project.factory.view.dept.HumanView;
 import com.project.factory.view.dept.ManagementView;
 import com.project.factory.view.dept.ProductionView;
 
-
-
+/**
+ * 메인 뷰를 담당하는 클래스이다.
+ */
 public class MainView {
 
 	public static Scanner scan = new Scanner(System.in);
 	
+	/**
+     * 로고를 출력하는 메서드이다.
+     */
 	public static void logo() {
 		System.out.println();
 		System.out.println();
@@ -60,9 +64,9 @@ public class MainView {
 	}
 	
 	
-	
-
-	// TODO mainMenu 메서드 추가
+	/**
+     * 메인 메뉴를 출력하는 메서드이다.
+     */
 	public static void mainMenu() {
 		
 		MainView.title("쌍용 테크");
@@ -160,7 +164,9 @@ public class MainView {
 		System.out.print("번호 입력: ");
 	}
 
-	// TODO pause 메서드 추가
+	/**
+     * 화면 일시 정지 후 초기 화면으로 돌아가기 위한 메서드이다.
+     */
 	public static void pause() {
 		System.out.println();
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
@@ -171,6 +177,9 @@ public class MainView {
 
 	}
 	
+	/**
+     * 화면 일시 정지 후 선택 화면으로 돌아가기 위한 메서드이다.
+     */
 	public static void pauseToSel() {
 		System.out.println();
 		System.out.println("엔터를 치면 선택 화면으로 돌아갑니다.");
@@ -180,8 +189,9 @@ public class MainView {
 		System.out.println();
 	}
 
-	// TODO checkContinue 메서드 추가
-	// y,s 답변 받는 메서드
+	/**
+     * 계속 진행 여부를 확인하는 메서드이다.
+     */
 	public static void checkContinue() {
 		System.out.println();
 		System.out.print("계속 진행하시겠습니까?(Y/N)\n");
@@ -189,7 +199,10 @@ public class MainView {
 		Main.answer = scan.nextLine();
 	}
 
-
+	/**
+	 * 계속 진행 여부를 확인하고 boolean 값으로 반환하는 메서드이다.
+	 * @return 계속 진행할 경우 true를 반환하고, 그렇지 않은 경우 false를 반환
+	 */
 	public static boolean checkContinueBoolean() {
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -212,16 +225,24 @@ public class MainView {
         }
     }
 
-	// TODO doubleLine 메서드 추가
+	/**
+     * 이중선을 출력하는 메서드이다.
+     */
 	public static void doubleLine() {
 		System.out.println("==========================================================================================================================================");
 	}
 
-	// TODO singnleLine 메서드 추가
+	/**
+     * 단일선을 출력하는 메서드이다.
+     */
 	public static void singleLine() {
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
+	/**
+     * 제목을 출력하는 메서드이다.
+     * @param title 출력할 제목 문자열
+     */
 	public static void title(String title) {
 		System.out.println();
 		MainView.doubleLine();

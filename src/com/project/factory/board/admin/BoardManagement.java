@@ -2,9 +2,6 @@ package com.project.factory.board.admin;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.factory.Main;
@@ -14,10 +11,12 @@ import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
-import com.project.factory.view.BoardManagementView;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.BoardManagementView;
 
-//TODO WriteBoard 클래스명 > BoardManagement으로 수정 
+/**
+ * 공지사항 관리하는 기능을 담당하는 클래스이다.
+ */
 public class BoardManagement {
 
 	static Scanner scan = new Scanner(System.in);
@@ -25,14 +24,15 @@ public class BoardManagement {
 	static String regex = ""; // 유효성 검사를 위한 변수
 	static int noticeNumber = 0; // 공지사항 번호
 	static String title = ""; // 제목
-	static String content = ""; //내용
+	static String content = ""; // 내용
 	static String deleteDate = ""; // 삭제할 날짜
 
-	// TODO 공지사항 데이터에 작성일 추가
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-
+	/**
+	 * 공지사항을 관리 메뉴를 실행하는 메서드이다.
+	 */
 	public static void boardManagement() {
-		
+
 		BoardData.load();
 
 		BoardManagementView.boardManagementMenu();
@@ -56,12 +56,14 @@ public class BoardManagement {
 				return;
 			}
 		}
-		
-		//BoardData.save();
+
+		// BoardData.save();
 
 	}// boardManagement
 
-	// 공지사항 등록
+	/**
+	 * 공지사항을 등록하는 메서드이다.
+	 */
 	private static void boardWrite() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
@@ -76,8 +78,8 @@ public class BoardManagement {
 					if (BoardManagement.writeContents()) {
 						// 공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
 						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + Identify.dept + "■"
-								+ BoardManagement.title + "■" + BoardManagement.content + "■"
-								+ Today.day() + "■" + BoardManagement.deleteDate);
+								+ BoardManagement.title + "■" + BoardManagement.content + "■" + Today.day() + "■"
+								+ BoardManagement.deleteDate);
 						writer.newLine();
 						writer.close();
 
@@ -111,7 +113,9 @@ public class BoardManagement {
 		}
 	}
 
-	// 공지사항 수정
+	/**
+	 * 공지사항을 수정하는 메서드이다.
+	 */
 	private static void boardEdit() {
 		while (true) {
 			BoardManagementView.boardEditView();
@@ -185,7 +189,9 @@ public class BoardManagement {
 		} // while
 	} // boardEdit
 
-	// 공지사항 삭제
+	/**
+	 * 공지사항을 삭제하는 메서드이다.
+	 */
 	private static void boardDelete() {
 		boolean loop = false;
 
@@ -200,7 +206,8 @@ public class BoardManagement {
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
 					for (Board board : BoardData.boardList) {
-						if (board.getNoticeNumber() == BoardManagement.noticeNumber && board.getId().equals(Identify.auth)) {
+						if (board.getNoticeNumber() == BoardManagement.noticeNumber
+								&& board.getId().equals(Identify.auth)) {
 							BoardData.boardList.remove(board);// 해당 board 삭제
 
 							BoardData.save();
@@ -254,8 +261,9 @@ public class BoardManagement {
 		} // while
 	}// boardDelete
 
-	// 공지사항 수정 메서드
-	// 수정 메서드
+	/**
+	 * 공지사항의 삭제 날짜를 수정하는 메서드이다.
+	 */
 	private static void boardEditDeleteDate() {
 
 		while (true) {
@@ -291,6 +299,9 @@ public class BoardManagement {
 
 	}// boardEditDeleteDate
 
+	/**
+	 * 공지사항의 제목을 수정하는 메서드이다.
+	 */
 	private static void boardEditTitle() {
 		while (true) {
 			if (BoardManagement.writeTitle()) {
@@ -324,6 +335,9 @@ public class BoardManagement {
 		}
 	}// boardEditTitle
 
+	/**
+	 * 공지사항의 내용을 수정하는 메서드이다.
+	 */
 	private static void boardEditcontents() {
 		while (true) {
 			for (Board board : BoardData.boardList) {
@@ -365,14 +379,18 @@ public class BoardManagement {
 		}
 	}// boardEditcontents
 
-	// 작성 메서드
-	// 공지사항 작성 메서드
+	
+	/**
+	 * 공지사항의 삭제 날짜를 작성하는 메서드이다.
+	 * 
+	 * @return 삭제 날짜 작성 성공 여부
+	 */
 	private static boolean writeDeleteDate() {
 		while (true) {
 			System.out.print("삭제할 날짜: ");
 			BoardManagement.deleteDate = scan.nextLine();
 
-			if (Today.invalidateDate(deleteDate)) {
+			if (Toolkit.invalidateDate(deleteDate)) {
 				System.out.println();
 				System.out.println("잘못된 형식의 날짜입니다.");
 				System.out.println("날짜는 10글자(하이픈 포함), 숫자만 입력 가능합니다.");
@@ -384,7 +402,7 @@ public class BoardManagement {
 				}
 
 			} else {
-				if (checkDeleteDate(BoardManagement.deleteDate)) {
+				if (Toolkit.checkDeleteDate(BoardManagement.deleteDate)) {
 					System.out.println();
 					System.out.println("삭제할 날짜는 작성일보다 과거로 설정할 수 없습니다.");
 
@@ -401,6 +419,11 @@ public class BoardManagement {
 		}
 	}
 
+	/**
+	 * 공지사항의 제목을 작성하는 메서드이다.
+	 * 
+	 * @return 제목 작성 성공 여부
+	 */
 	private static boolean writeTitle() {
 		while (true) {
 			System.out.print("제목: ");
@@ -422,10 +445,15 @@ public class BoardManagement {
 		}
 	}
 
+	/**
+	 * 공지사항의 내용을 작성하는 메서드이다.
+	 * 
+	 * @return 내용 작성 성공 여부
+	 */
 	private static boolean writeContents() {
 		while (true) {
 			StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
-			
+
 			System.out.println();
 			System.out.println("종료하려면 빈 줄에서 엔터를 두 번 입력하세요.");
 			System.out.print("내용: ");
@@ -436,7 +464,7 @@ public class BoardManagement {
 				}
 				contents.append(line).append("\\n"); // 줄바꿈된 상태로 저장하지 말고 줄바꿈 문자를 추가하여 표시
 			}
-			if (invalidateContents(contents.toString())) { //StringBuilder 객체에 저장된 문자열 버퍼를 String으로 변환
+			if (invalidateContents(contents.toString())) { // StringBuilder 객체에 저장된 문자열 버퍼를 String으로 변환
 				System.out.println();
 				System.out.println("내용은 1-200글자까지 입력 가능합니다.");
 
@@ -452,40 +480,35 @@ public class BoardManagement {
 		}
 	}
 
-	// 유효성 검사
-	// java.util.Date와 java.sql.Date는 서로 다른 클래스입니다. 따라서 직접적인 형변환이 불가능
-
-	// 유효성 검사
-	//TODO 파일 load할 때 사용하려고 public로 변경
-	public static boolean checkDeleteDate(String deleteDate) {
-		try {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-			Calendar today = Calendar.getInstance();
-			// 삭제 날짜를 Calendar 객체로 변환
-			Calendar deleteDateCal = Calendar.getInstance();
-			deleteDateCal.setTime(dateFormat.parse(deleteDate));
-
-			// 삭제 날짜가 현재 날짜보다 이전인지 검사
-			return deleteDateCal.before(today);
-
-		} catch (ParseException e) {
-			System.out.println("BoardManagement.checkDeleteDate");
-			e.printStackTrace();
-		}
-		return false;
-	}
-
+	// java.util.Date와 java.sql.Date는 서로 다른 클래스이다. 따라서 직접적인 형변환이 불가능
+	/**
+	 * 제목의 유효성을 검사하는 메서드이다.
+	 * 제목은 비어 있거나 30자를 초과할 수 없다.
+	 * 
+	 * @return 제목이 유효한 경우 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean invalidateTitle() {
 		// 제목 > 최대 30글자
 		return BoardManagement.title.isEmpty() || BoardManagement.title.length() > 30;
 	}
 
+	/**
+	 * 내용의 유효성을 검사하는 메서드이다.
+	 * 내용은 비어 있거나 200자를 초과할 수 없다.
+	 * 
+	 * @param contents 검사할 내용
+	 * @return 내용이 유효한 경우 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean invalidateContents(String contents) {
 		// 내용 > 최대 200글자
 		return contents.isEmpty() || contents.length() > 200;
 	}
-	
+
+	/**
+	 * 주어진 공지사항 번호가 존재하고 현재 사용자가 작성한 공지사항인지 확인하는 메서드이다.
+	 * 
+	 * @return 공지사항 번호가 유효한 경우 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean checkNoticeNumberExists() {
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == BoardManagement.noticeNumber && board.getId().equals(Identify.auth)) {
@@ -495,22 +518,29 @@ public class BoardManagement {
 		return false;
 	}
 
-	// 중복성 검사
+	/**
+	 * 삭제 날짜의 변경 여부를 확인하고 수정하는 메서드이다.
+	 * 
+	 * @return 삭제 날짜가 변경되었는지 여부를 반환
+	 */
 	private static boolean checkDeleteDateChange() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
-				if (board.getDeleteDate().equals(BoardManagement.deleteDate)) {
-					return false;
-
-				} else {
-					board.setDeleteDate(BoardManagement.deleteDate); // 수정
-					return true;
-				}
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber
+					&& board.getDeleteDate().equals(BoardManagement.deleteDate)) {
+				return false;
+			} else {
+				board.setDeleteDate(BoardManagement.deleteDate); // 수정
+				return true;
 			}
 		} // for
 		return false;
 	}
 
+	/**
+	 * 제목의 변경 여부를 확인하고 수정하는 메서드이다.
+	 * 
+	 * @return 제목이 변경되었는지 여부를 반환
+	 */
 	public static boolean checkTitleChange() {
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
@@ -526,6 +556,11 @@ public class BoardManagement {
 		return false;
 	}
 
+	/**
+	 * 내용의 변경 여부를 확인하고 수정하는 메서드이다.
+	 * 
+	 * @return 내용이 변경되었는지 여부를 반환
+	 */
 	private static boolean checkContentsChange() {
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {

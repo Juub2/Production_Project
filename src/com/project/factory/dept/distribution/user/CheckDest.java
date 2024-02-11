@@ -7,7 +7,6 @@ import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
 
 import com.project.factory.view.MainView;
-import com.project.factory.view.dept.CheckDestView;
 import com.project.factory.view.dept.DistributionView;
 
 public class CheckDest {

@@ -12,13 +12,15 @@ import com.project.factory.Toolkit;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
-import com.project.factory.resource.sub.AgencyData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
 import com.project.factory.view.sub.AgencyManagementView;
 
 //대리점 ID■비밀번호■대리점 명■전화번호■이메일■주소■지역 번호
 //S8132101■1234■강남1호점■010-1234-4567■gangnam1@auto.com■서울특별시 강남구 테헤란로 132■2
+/**
+ * 대리점 계정 관리를 담당하는 클래스이다.
+ */
 public class AgencyManagement {
 
 	static Scanner scan = new Scanner(System.in);
@@ -31,9 +33,12 @@ public class AgencyManagement {
 	static String address = ""; // 주소
 	static String id = ""; // 아이디
 
+	/**
+	 * 대리점 계정 관리 메뉴를 실행하는 메서드이다.
+	 */
 	public static void agencyManagement() {
 
-		AgencyData.load();
+		Data.load(); //대리점 계정 등록 후 멤버 리스트 초기화후 다시 불러오기 위해서 필요
 
 		AgencyManagementView.agencyManagementMenu();
 
@@ -57,6 +62,9 @@ public class AgencyManagement {
 		}
 	}// agencyManagement
 
+	/**
+	 * 대리점 계정을 등록하는 메서드이다.
+	 */
 	private static void registerAgency() {
 
 		try {
@@ -133,6 +141,9 @@ public class AgencyManagement {
 	}// registerAgency
 
 	// 이름도 중복 검사를 진행해서 이름으로 삭제하는 게 편할 듯
+	/**
+	 * 대리점 계정을 삭제하는 메서드이다.
+	 */
 	private static void deleteAgency() {
 
 		boolean loop = false;
@@ -186,7 +197,11 @@ public class AgencyManagement {
 		}
 	}// deleteAgency
 
-	// 대리점 등록 메서드
+	/**
+	 * 대리점 등록 시 대리점명을 작성하는 메서드이다.
+	 * 
+	 * @return 대리점명 등록 여부
+	 */
 	private static boolean registerAgencyName() {
 		while (true) {
 			System.out.print("대리점명: ");
@@ -219,12 +234,17 @@ public class AgencyManagement {
 		}
 	}// registerAgencyName
 
+	/**
+	 * 대리점 등록 시 전화번호를 작성하는 메서드이다.
+	 * 
+	 * @return 전화번호 등록 여부
+	 */
 	private static boolean registerAgencyPhoneNum() {
 		while (true) {
 			System.out.print("전화번호: ");
 			AgencyManagement.phoneNum = scan.nextLine();
 
-			if (AgencyManagement.invalidatePhoneNum()) {
+			if (Toolkit.invalidatePhoneNum(AgencyManagement.phoneNum)) {
 				System.out.println();
 				System.out.println("전화번호를 잘못 입력했습니다.");
 				System.out.println("전화번호는 12-13글자(하이픈 포함), 숫자만 입력 가능합니다.");
@@ -251,6 +271,11 @@ public class AgencyManagement {
 		}
 	}// registerAgencyPhoneNum
 
+	/**
+	 * 대리점 등록 시 구역 번호를 작성하는 메서드이다.
+	 * 
+	 * @return 구역 번호 등록 여부
+	 */
 	private static boolean registerAgencyArea() {
 		while (true) {
 			MainView.singleLine();
@@ -295,12 +320,17 @@ public class AgencyManagement {
 		}
 	}// registerAgencyArea
 
+	/**
+	 * 대리점 등록 시 주소를 작성하는 메서드이다.
+	 * 
+	 * @return 주소 등록 여부
+	 */
 	private static boolean registerAgencyAddress() {
 		while (true) {
 			System.out.print("주소: ");
 			AgencyManagement.address = scan.nextLine();
 
-			if (AgencyManagement.invalidateAddress()) {
+			if (Toolkit.invalidateAddress(AgencyManagement.address)) {
 				System.out.println();
 				System.out.println("주소를 잘못 입력했습니다.");
 				System.out.println("주소는 2-13글자(로/길), 한글&숫자만 입력 가능합니다.");
@@ -317,7 +347,11 @@ public class AgencyManagement {
 		}
 	}
 
-	// 유효성 검사 메서드
+	/**
+	 * 대리점명의 유효성을 검사하는 메서드이다.
+	 * 
+	 * @return 이름의 유효성 여부
+	 */
 	private static boolean invalidateName() {
 		// 대리점명 > 최소 5글자 한글&숫자만
 		AgencyManagement.regex = "^[가-힣0-9]{5,}$";
@@ -327,30 +361,21 @@ public class AgencyManagement {
 		return !nameMatcher.find();
 	}
 
-	private static boolean invalidatePhoneNum() {
-		// 전화 번호 > 12-13글자, 숫자만
-		AgencyManagement.regex = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{4}-[0-9]{4}$";
-		Pattern phoneNumPattern = Pattern.compile(AgencyManagement.regex);
-		Matcher phoneNumMatcher = phoneNumPattern.matcher(AgencyManagement.phoneNum);
-
-		return !phoneNumMatcher.find();
-	}
-
+	/**
+	 * 대리점 구역 번호의 유효성을 검사하는 메서드이다.
+	 * 
+	 * @return 구역 번호의 유효성 여부
+	 */
 	private static boolean invalidateArea() {
 		// 구역 번호 > 1-17
 		return Integer.parseInt(AgencyManagement.areaNum) < 1 || Integer.parseInt(AgencyManagement.areaNum) > 17;
 	}
 
-	private static boolean invalidateAddress() {
-		// 주소 > 2-34글자(로/길), 한글&숫자
-		AgencyManagement.regex = "^[가-힣0-9\\s]{2,34}$";
-		Pattern addressPattern = Pattern.compile(AgencyManagement.regex);
-		Matcher addressMatcher = addressPattern.matcher(AgencyManagement.address);
-
-		return !addressMatcher.find();
-	}
-
-	// 중복성 검사 메서드
+	/**
+	 * 대리점명의 중복을 검사하는 메서드이다.
+	 * 
+	 * @return 대리점명의 중복 여부
+	 */
 	private static boolean checkNameExists() {
 		for (Members member : Data.memberList) {
 			if (member.getLevel().equals("3")) {
@@ -362,6 +387,11 @@ public class AgencyManagement {
 		return false;
 	}
 
+	/**
+	 * 전화번호의 중복을 검사하는 메서드이다.
+	 * 
+	 * @return 전화번호의 중복 여부
+	 */
 	private static boolean checkPhoneNumExists() {
 		for (Members member : Data.memberList) {
 			if (member.getPhoneNum().equals(AgencyManagement.phoneNum)) {
@@ -371,6 +401,9 @@ public class AgencyManagement {
 		return false;
 	}
 
+	/**
+	 * 대리점 아이디를 생성하는 메서드이다.
+	 */
 	private static void createAgencyId() {
 
 		Random random = new Random(); // 랜덤 객체 생성
@@ -395,7 +428,11 @@ public class AgencyManagement {
 		}
 	}// createAgencyId
 
-	// A,B,C,D 안됨
+	/**
+	 * 행정 구역 번호에 해당하는 문자를 반환하는 메서드이다.
+	 * 
+	 * @return 구역 번호에 해당하는 문자
+	 */
 	private static String getAgencyAreaStr() {
 		switch (AgencyManagement.areaNum) {
 		case "1":
@@ -436,7 +473,11 @@ public class AgencyManagement {
 		return "";
 	}
 
-	// checkContinue
+	/**
+	 * 대리점 등록 과정을 계속할지 여부를 확인하는 메서드이다.
+	 * 
+	 * @return 등록 과정을 계속할지 여부
+	 */
 	private static boolean checkRegisterContinue() {
 		while (true) {
 			System.out.println();
@@ -457,6 +498,11 @@ public class AgencyManagement {
 		}
 	}
 
+	/**
+	 * 삭제 과정을 계속할지 여부를 확인하는 메서드이다.
+	 * 
+	 * @return 삭제 과정을 계속할지 여부
+	 */
 	private static boolean checkDeleteContinue() {
 		while (true) {
 			System.out.println();

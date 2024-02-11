@@ -7,8 +7,14 @@ import com.project.factory.resource.sub.Order;
 import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
 
+/**
+ * 경영부 관련 화면을 관리하는 클래스이다.
+ */
 public class ManagementView {
 
+	/**
+     * 경영부 관리자 화면에 오늘 출근한 경영부 인원을 출력하는 메서드이다.
+     */
 	public static void managementAdminView() {
 		
 		CommuteData.load();
@@ -28,6 +34,9 @@ public class ManagementView {
 		
 	}
 	
+	/**
+     * 신규 주문과 누적 주문 수를 출력하는 메서드이다.
+     */
 	private static void totalOrderNum() {
 		int count = 0; //신규 주문
 		

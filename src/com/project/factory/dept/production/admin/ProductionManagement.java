@@ -96,7 +96,6 @@ public class ProductionManagement {
 		// 모든 종료절차가 끝나고난 뒤
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
-		MainView.doubleLine();
 		MainView.singleLine();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
 		MainView.singleLine();

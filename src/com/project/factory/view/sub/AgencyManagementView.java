@@ -7,8 +7,14 @@ import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
 
+/**
+ * 대리점 관리 화면을 관리하는 클래스이다.
+ */
 public class AgencyManagementView {
 
+	/**
+     * 대리점 관리 메뉴를 출력하는 메서드이다.
+     */
 	public static void agencyManagementMenu() {
 		MainView.title("대리점 관리");
 
@@ -25,6 +31,9 @@ public class AgencyManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+     * 대리점 삭제 메뉴를 출력하는 메서드이다.
+     */
 	public static void deleteAgencyMenu() {
 		MainView.title("대리점 삭제");
 		System.out.println();
@@ -33,6 +42,9 @@ public class AgencyManagementView {
 		System.out.print("대리점명: ");
 	}
 
+	/**
+     * 대리점 목록을 출력하는 내부 메서드이다.
+     */
 	private static void agencyManagementListView() {
 	    System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점명]", "[전화번호]", "[구역]", "[주소]");
 	    

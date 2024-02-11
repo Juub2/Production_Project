@@ -8,13 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.project.factory.Main;
-import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.DistributionData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
-import com.project.factory.view.dept.RegionView;
 
 public class DestManagement {
 

@@ -12,28 +12,40 @@ import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.view.MainView;
 
+
+/**
+ * 회원가입을 하는 클래스 이다.
+ */
 public class SignUp {
 
-	private static final Object[] String = null;
 
+
+	private static final Object[] String = null;
+	/**
+	 * cheackid 회원가입 을 위한 메서드 이다.
+	 * 
+	 * @param id           = 사원번호
+	 * @param name         = 이름
+	 * @param humanNum     = 생년월일
+	 * @param phoneNum     = 핸드폰 번호
+	 * @param address      = 주소
+	 * @param depart       = 부서
+	 * @param pw           = 비밀번호
+	 */
 	public static void cheackid() {
 		MainView.title("회원가입");
 		
 		try {
-			// 사원번호
+			
 			String id = "";
-			// 이름
 			String name = "";
-			// 생년월일
 			String humanNum = "";
-			// 핸드폰 번호
 			String phoneNum = "";
-			// 주소
 			String address = "";
-			// 부서
 			String depart = "";
-			// 비밀번호
 			String pw = "";
+			
+			
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBERTEMP));
 			
@@ -61,6 +73,7 @@ public class SignUp {
 						break;
 					} 
 				}
+				
 							
 				if (result) {
 					String[] temp = tempMember.split("■");
@@ -142,6 +155,11 @@ public class SignUp {
 
 	}
 	
+	
+	/**
+	 * 계속 진행 여부를 확인하고 boolean 값으로 반환하는 메서드이다.
+	 * @return 계속 진행할 경우 true를 반환하고, 그렇지 않은 경우 false를 반환
+	 */
 	private static void checkContinue() {
 		MainView.checkContinue();
 		

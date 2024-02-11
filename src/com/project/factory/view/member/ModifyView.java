@@ -5,13 +5,16 @@ import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
 
+/**
+ * 개인정보 조회 및 수정 화면을 관리하는 클래스이다.
+ */
 public class ModifyView {
 
+	 /**
+     * 개인정보 조회 및 수정 메뉴를 출력하는 메서드이다.
+     */
 	public static void modifyMenu() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("\t\t\t\t\t\t\t개인정보 조회 및 수정");
-		MainView.doubleLine();
+		MainView.title("개인정보 조회 및 수정");
 
 		for (Members member : Data.memberList) {
 			if (member.getId().equals(Identify.auth)) {

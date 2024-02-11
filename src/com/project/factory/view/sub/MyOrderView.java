@@ -5,8 +5,14 @@ import com.project.factory.resource.sub.Order;
 import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
 
+/**
+ * 주문서 관리 화면을 관리하는 클래스이다.
+ */
 public class MyOrderView {
 
+	/**
+     * 주문서 관리 메뉴를 출력하는 메서드이다.
+     */
 	public static void myOrderMenu() {
 		MainView.title("주문서 관리");
 
@@ -20,6 +26,9 @@ public class MyOrderView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+     * 주문서 작성 메뉴를 출력하는 메서드이다.
+     */
 	public static void orderAddMenu() {
 		MainView.title("주문서 작성");
 
@@ -30,6 +39,9 @@ public class MyOrderView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+     * 주문서 수정 메뉴를 출력하는 메서드이다.
+     */
 	public static void orderEditMenu() {
 		MainView.title("주문서 수정");
 
@@ -42,6 +54,9 @@ public class MyOrderView {
 		System.out.print("번호 입력: ");
 	}
 	
+	/**
+     * 주문서 삭제 메뉴를 출력하는 메서드이다.
+     */
 	public static void orderDeleteMenu() {
 		MainView.title("주문서 삭제");
 		
@@ -54,6 +69,9 @@ public class MyOrderView {
 		System.out.print("번호 입력: ");
 	}
 	
+	 /**
+     * 주문서 조회 메뉴를 출력하는 메서드이다.
+     */
 	public static void orderViewMenu() {
 		MainView.title("주문서 조회");
 		
@@ -62,6 +80,9 @@ public class MyOrderView {
 		MainView.singleLine();
 	}
 
+	/**
+     * 모델을 출력하는 메서드이다.
+     */
 	private static void modelView() {
 		System.out.println();
 		System.out.println("1. K3");
@@ -71,6 +92,9 @@ public class MyOrderView {
 		System.out.println();
 	}
 
+	 /**
+     * 현재 로그인한 사용자가 작성한 주문서 목록을 출력하는 메서드이다.
+     */
 	private static void orderListView() {
 		System.out.println();
 		System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
@@ -82,6 +106,9 @@ public class MyOrderView {
 		}
 	}
 
+	/**
+     * 모델별로 주문서를 조회하는 메서드이다.
+     */
 	private static void orderView() {
 		myOrderViewList("K3");
 		System.out.println();
@@ -92,6 +119,10 @@ public class MyOrderView {
 		myOrderViewList("K9");
 	}
 
+	/**
+	 * 주문서 목록을 출력하는 메서드이다.
+	 * @param model 목록을 출력할 모델명
+	 */
 	private static void myOrderViewList(String model) {
 		boolean loop = false;
 		

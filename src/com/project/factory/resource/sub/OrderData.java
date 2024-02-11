@@ -10,9 +10,19 @@ import java.util.Comparator;
 
 import com.project.factory.resource.Path;
 
+/**
+ * 주문 데이터를 관리하는 클래스이다.
+ */
 public class OrderData {
+	
+	/**
+	 * 주문서 목록
+	 */
 	public static ArrayList<Order> orderList = new ArrayList<Order>();
 
+	/**
+	 * 파일에서 주문서 데이터를 로드하는 메서드이다.
+	 */
 	public static void load() {
 		try {
 
@@ -48,6 +58,9 @@ public class OrderData {
 
 	}//load
 	
+	/**
+	 * 주문서 데이터를 파일에 저장하는 메서드이다.
+	 */
 	public static void save() {
 
 		try {

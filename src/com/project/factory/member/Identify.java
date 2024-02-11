@@ -1,22 +1,19 @@
 package com.project.factory.member;
 
-
-//TODO 로그인한 사용자 정보 저장
 /**
- * 로그인한 사용자 정보 저장 클래스
+ * 사용자 인증 정보를 저장하는 클래스이다.
  */
 public class Identify {
-	// 인증 티켓(= 사용자가 인증을 완료했음을 나타내는 값)
+	// 사용자 인증 티켓(= 사용자가 인증을 완료했음을 나타내는 값)
 	public static String auth;
 
-	// 관리자(1), 사원(2), 대리점(3) 구분
+	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
 	public static String level;
 	
-	// 부서(생산, 유통, 인사, 경영) 
+	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
 	public static String dept;
 	
-	//TODO 이름 추가
+	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
 	public static String name;
-
 
 }

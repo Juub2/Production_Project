@@ -17,6 +17,9 @@ import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.sub.MyOrderView;
 
+/**
+ * 대리점이 주문을 처리하는 클래스이다.
+ */
 public class MyOrder {
 
 	static Scanner scan = new Scanner(System.in);
@@ -28,6 +31,9 @@ public class MyOrder {
 	private static int quantity; // 수량
 	private static String modelId; // 모델ID
 
+	 /**
+     * 대리점의 주문 처리를 담당하는 메인 메서드이다.
+     */
 	public static void myOrder() {
 
 		OrderData.load();
@@ -56,6 +62,9 @@ public class MyOrder {
 		}
 	}// MyOrder
 
+	/**
+	 * 주문서를 등록하는 메서드이다.
+	 */
 	private static void orderAdd() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.ORDER, true)); // true인 경우 이어쓰기
@@ -78,7 +87,7 @@ public class MyOrder {
 						// 주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명
 						writer.write(MyOrder.id + "■" + Today.day() + "■" + MyOrder.agencyName + "■"
 								+ MyOrder.agencyAddress + "■" + MyOrder.agencyPhoneNum + "■" + MyOrder.quantity + "■"
-								+ Today.daysLater() + "■" + MyOrder.modelId);
+								+ Toolkit.daysLater() + "■" + MyOrder.modelId);
 						writer.newLine();
 						writer.close();
 
@@ -112,6 +121,9 @@ public class MyOrder {
 		}
 	}// orderAdd
 
+	/**
+	 * 주문서를 수정하는 메서드이다.
+	 */
 	private static void orderEdit() {
 		boolean loop = false;
 		while (true) {
@@ -160,6 +172,9 @@ public class MyOrder {
 		} // while
 	}// orderEdit
 
+	/**
+	 * 주문서를 삭제하는 메서드이다.
+	 */
 	private static void orderDelete() {
 		boolean loop = false;
 		while (true) {
@@ -207,6 +222,9 @@ public class MyOrder {
 
 	}// orderDelete
 
+	/**
+	 * 주문서를 조회하는 메서드이다.
+	 */
 	private static void orderView() {
 		MyOrderView.orderViewMenu();
 		
@@ -216,7 +234,10 @@ public class MyOrder {
 		return;
 	}// orderView
 
-	// 주문서 작성 메서드
+
+	/**
+	 * 대리점 정보를 가져오는 메서드이다.
+	 */
 	private static void getAgencyInfo() {
 		for (Members member : Data.memberList) {
 			if (member.getId().equals(Identify.auth)) { // 주문서 작성 중인 회원
@@ -230,6 +251,11 @@ public class MyOrder {
 		}
 	}
 
+	/**
+	 * 수량을 입력받는 메서드이다.
+	 * 
+	 * @return 입력된 수량이 유효하면 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean writeQuantity() {
 		while (true) {
 			System.out.print("원하는 수량을 입력하세요: ");
@@ -262,6 +288,10 @@ public class MyOrder {
 		} // while
 	}// writeQuantity
 
+	/**
+	 * 주문서 번호를 생성하는 메서드이다.
+	 * 랜덤으로 6자리 숫자를 생성하고, 중복을 확인하여 유일한 번호를 생성한다.
+	 */
 	private static void createOrderId() {
 
 		Random random = new Random(); // 랜덤 객체 생성
@@ -284,7 +314,10 @@ public class MyOrder {
 		}
 	}// createOrderId
 
-	// 유효성 검사
+	/**
+	 * 주문 모델이 존재하는지 확인하는 메서드이다.
+	 * @return 주문 모델이 존재하면 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean checkModelExists() {
 		if (Main.selectNum.equals("1")) {
 			MyOrder.modelId = "K3";
@@ -303,6 +336,10 @@ public class MyOrder {
 		}
 	}
 
+	/**
+	 * 주문서 번호가 존재하는지 확인하는 메서드이다.
+	 * @return 주문서 번호가 존재하면 true를 반환하고, 그렇지 않으면 false를 반환
+	 */
 	private static boolean checkOrderIdExists() {
 		for (Order order : OrderData.orderList) {
 			if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
@@ -312,6 +349,10 @@ public class MyOrder {
 		return false;
 	}
 
+	/**
+	 * 주문을 수정할지 여부를 확인하는 메서드이다.
+	 * @return 주문을 수정할지 여부에 따라 true 또는 false를 반환
+	 */
 	private static boolean checkEditContinue() {
         while (true) {
 
@@ -333,6 +374,10 @@ public class MyOrder {
         }
     }//checkEditContinue
 
+	/**
+	 * 주문을 취소할지 여부를 확인하는 메서드이다.
+	 * @return 주문을 취소할지 여부에 따라 true 또는 false를 반환
+	 */
 	private static boolean checkDeleteContinue() {
 		while (true) {
 
